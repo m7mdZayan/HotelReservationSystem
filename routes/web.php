@@ -13,6 +13,19 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
+Route::get('/admin', function () {
     return view('admin/dashboard');
 });
+
+Route::get('/manager', function () {
+    return view('manager/dashboard');
+});
+
+Route::get('/user', function () {
+    return view('user/dashboard');
+});
+
+Route::get('/receptionist', function () {
+    return view('receptionist/dashboard');
+});
+
