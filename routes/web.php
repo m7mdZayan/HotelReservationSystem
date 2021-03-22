@@ -30,3 +30,19 @@ Route::get('checkout',[App\Http\Controllers\CheckoutController::class, 'checkout
 Route::post('checkout',[App\Http\Controllers\CheckoutController::class, 'afterpayment'])->name('checkout.credit-card');
 
 Route::get('/user', [HomeController::class, 'index']);
+Route::get('/admin', function () {
+    return view('admin/dashboard');
+});
+
+Route::get('/manager', function () {
+    return view('manager/dashboard');
+});
+
+Route::get('/user', function () {
+    return view('user/dashboard');
+});
+
+Route::get('/receptionist', function () {
+    return view('receptionist/dashboard');
+});
+

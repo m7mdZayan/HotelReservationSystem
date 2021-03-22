@@ -68,7 +68,7 @@
     <a href="index3.html" class="brand-link">
       <img src="dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
            style="opacity: .8">
-      <span class="brand-text font-weight-light">Admin Panel</span>
+      <span class="brand-text font-weight-light">Manager Panel</span>
     </a>
 
     <!-- Sidebar -->
@@ -91,24 +91,11 @@
 
             <li class="nav-item">
                 <a href="#" class="nav-link">
-                    <i class="fas fa-user-tie mr-2"></i>
-                    <p>Manage Managers</p>
-                </a>
-            </li>
-
-            <li class="nav-item">
-                <a href="#" class="nav-link">
                     <i class="fas fa-user-edit mr-2"></i>
                     <p>Manage Receptionists</p>
                 </a>
             </li>
 
-            <li class="nav-item">
-                <a href="#" class="nav-link">
-                    <i class="fas fa-user-alt mr-2"></i>
-                    <p>Manage Customers</p>
-                </a>
-            </li>
 
             <li class="nav-item">
                 <a href="#" class="nav-link">
