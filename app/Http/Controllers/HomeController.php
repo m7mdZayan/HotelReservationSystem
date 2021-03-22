@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\DataTables\UserDataTable;
 
 class HomeController extends Controller
 {
@@ -21,8 +22,9 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
-    public function index()
+    public function index(UserDataTable $dataTable)
     {
-        return view('home');
+        //return view('home');
+        return $dataTable->render('user');
     }
 }
