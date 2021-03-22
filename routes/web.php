@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\HomeController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -30,19 +31,12 @@ Route::get('checkout',[App\Http\Controllers\CheckoutController::class, 'checkout
 Route::post('checkout',[App\Http\Controllers\CheckoutController::class, 'afterpayment'])->name('checkout.credit-card');
 
 // Route::get('/user', [HomeController::class, 'index']);
-Route::get('/admin', function () {
-    return view('admin/dashboard');
-});
 
-Route::get('/manager', function () {
-    return view('manager/dashboard');
-});
+//dashBoards Routes
+Route::get('/admin', [CheckoutController::class, 'adminDashBoard'])->name('admin.dashboard')->middleware('auth');
 
-Route::get('/user', function () {
-    return view('user/dashboard');
-});
+Route::get('/manager', [CheckoutController::class, 'managerDashBoard'])->name('manager.dashboard')->middleware('auth');
 
-Route::get('/receptionist', function () {
-    return view('receptionist/dashboard');
-});
+Route::get('/receptionist', [CheckoutController::class, 'receptionistDashBoard'])->name('receptionist.dashboard')->middleware('auth');
 
+Route::get('/user', [CheckoutController::class, 'userDashBoard'])->name('user.dashboard')->middleware('auth');
