@@ -29,7 +29,7 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 Route::get('checkout',[App\Http\Controllers\CheckoutController::class, 'checkout']);
 Route::post('checkout',[App\Http\Controllers\CheckoutController::class, 'afterpayment'])->name('checkout.credit-card');
 
-Route::get('/user', [HomeController::class, 'index']);
+// Route::get('/user', [HomeController::class, 'index']);
 Route::get('/admin', function () {
     return view('admin/dashboard');
 });

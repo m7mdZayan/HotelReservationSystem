@@ -75,8 +75,7 @@ class UserDataTable extends DataTable
             // Column::make('updated_at'),
             'id',
             'name',
-            'email',
-            'password',
+            'email'
         ];
     }
 
