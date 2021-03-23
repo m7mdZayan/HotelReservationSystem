@@ -127,7 +127,6 @@
       <excludeFolder url="file://$MODULE_DIR$/vendor/myclabs/php-enum" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/league/fractal" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/ezyang/htmlpurifier" />
-      <excludeFolder url="file://$MODULE_DIR$/vendor/stripe/stripe-php" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/maatwebsite/excel" />
     </content>
     <orderEntry type="inheritedJdk" />

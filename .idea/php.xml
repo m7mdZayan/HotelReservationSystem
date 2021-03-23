@@ -125,7 +125,6 @@
       <path value="$PROJECT_DIR$/vendor/myclabs/php-enum" />
       <path value="$PROJECT_DIR$/vendor/league/fractal" />
       <path value="$PROJECT_DIR$/vendor/ezyang/htmlpurifier" />
-      <path value="$PROJECT_DIR$/vendor/stripe/stripe-php" />
       <path value="$PROJECT_DIR$/vendor/maatwebsite/excel" />
     </include_path>
   </component>
