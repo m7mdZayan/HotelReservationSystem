@@ -4,11 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\DataTables\UserDataTable;
-<<<<<<< HEAD
-=======
 use App\Models\User;
 use Yajra\DataTables\Facades\DataTables;
->>>>>>> origin/esraa
 
 class HomeController extends Controller
 {
@@ -27,9 +24,6 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
-    public function index(UserDataTable $dataTable)
-    {
-        //return view('home');
     public function index(UserDataTable $dataTable, Request $request)
     {
         if ($request->ajax()) {
