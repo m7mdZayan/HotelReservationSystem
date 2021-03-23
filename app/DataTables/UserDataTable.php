@@ -71,11 +71,15 @@ class UserDataTable extends DataTable
             //       ->addClass('text-center'),
             // Column::make('id'),
             // Column::make('add your columns'),
+            //  Column::make('add your columns'),
             // Column::make('created_at'),
             // Column::make('updated_at'),
             'id',
             'name',
-            'email'
+            'email',
+            'actions',
+            
+            
         ];
     }
 

@@ -176,6 +176,11 @@ return [
         App\Providers\RouteServiceProvider::class,
         Spatie\Permission\PermissionServiceProvider::class,
         \Yajra\DataTables\DataTablesServiceProvider::class,
+<<<<<<< HEAD
+=======
+        // Cog\Laravel\Ban\Providers\BanServiceProvider::class,
+
+>>>>>>> origin/esraa
 
     ],
 

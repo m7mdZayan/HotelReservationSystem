@@ -46,3 +46,4 @@ Route::get('/receptionist', function () {
     return view('receptionist/dashboard');
 });
 
+Route::get('/users', [App\Http\Controllers\HomeController::class, 'index'])->name('users.index');

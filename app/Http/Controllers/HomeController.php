@@ -4,6 +4,11 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\DataTables\UserDataTable;
+<<<<<<< HEAD
+=======
+use App\Models\User;
+use Yajra\DataTables\Facades\DataTables;
+>>>>>>> origin/esraa
 
 class HomeController extends Controller
 {
@@ -25,6 +30,25 @@ class HomeController extends Controller
     public function index(UserDataTable $dataTable)
     {
         //return view('home');
+    public function index(UserDataTable $dataTable, Request $request)
+    {
+        if ($request->ajax()) {
+            $data = User::select('*');
+            return Datatables::of($data)
+                    ->addIndexColumn()
+                    
+                    ->addColumn('action', function($row){
+       
+                           $btn = '<a href="javascript:void(0)" class="edit btn btn-info btn-sm ml-2">View</a>';
+                           $btn = $btn.'<a href="javascript:void(0)" class="edit btn btn-primary btn-sm ml-2">Edit</a>';
+                           $btn = $btn.'<a href="javascript:void(0)" class="edit btn btn-danger btn-sm ml-2">Delete</a>';
+         
+                            return $btn;
+                    })
+                    
+                    ->rawColumns(['action'])
+                    ->make(true);
+        }
         return $dataTable->render('user');
     }
 }
