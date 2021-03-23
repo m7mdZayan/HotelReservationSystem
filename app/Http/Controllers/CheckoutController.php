@@ -32,26 +32,4 @@ class CheckoutController extends Controller
     {
         echo 'Payment Has been Received';
     }
-
-    //view dashBoards 
-    //admin
-    public function adminDashBoard()
-    {
-        return view('admin.dashboard');
-    }
-    //manager
-    public function managerDashBoard()
-    {
-        return view('manager.dashboard');
-    }
-    //receptionist
-    public function receptionistDashBoard()
-    {
-        return view('receptionist.dashboard');
-    }
-    //user
-    public function userDashBoard()
-    {
-        return view('user.dashboard');
-    }
 }

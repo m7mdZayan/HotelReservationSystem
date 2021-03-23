@@ -5,6 +5,11 @@ use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\HomeController;
 
+use App\Http\Controllers\AdminController;
+use App\Http\Controllers\ClientController;
+use App\Http\Controllers\ManagerController;
+use App\Http\Controllers\ReceptionistController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -33,10 +38,11 @@ Route::post('checkout',[App\Http\Controllers\CheckoutController::class, 'afterpa
 // Route::get('/user', [HomeController::class, 'index']);
 
 //dashBoards Routes
-Route::get('/admin', [CheckoutController::class, 'adminDashBoard'])->name('admin.dashboard')->middleware('auth');
-
-Route::get('/manager', [CheckoutController::class, 'managerDashBoard'])->name('manager.dashboard')->middleware('auth');
-
-Route::get('/receptionist', [CheckoutController::class, 'receptionistDashBoard'])->name('receptionist.dashboard')->middleware('auth');
-
-Route::get('/user', [CheckoutController::class, 'userDashBoard'])->name('user.dashboard')->middleware('auth');
+//admin
+Route::get('/admin', [AdminController::class, 'index'])->name('admin.index')->middleware('auth');
+//manager
+Route::get('/manager', [ManagerController::class, 'index'])->name('manager.index')->middleware('auth');
+//receptionist
+Route::get('/receptionist', [ReceptionistController::class, 'index'])->name('receptionist.index')->middleware('auth');
+//client
+Route::get('/client', [ClientController::class, 'index'])->name('client.index')->middleware('auth');
