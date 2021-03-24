@@ -24,7 +24,7 @@
                 <th>Country</th>
                 <th>Gender</th>
                 {{-- <th>ban</th> --}}
-                <th>Action</th>
+                {{-- <th>Action</th> --}}
             </tr>
         </thead>
         <tbody>
@@ -40,7 +40,7 @@
     var table = $('.data-table').DataTable({
         processing: true,
         serverSide: true,
-        ajax: "{{ route('users.index') }}",
+        ajax: "{{ route('receptionist.show') }}",
         columns: [
             {data: 'id', name: 'id'},
             {data: 'name', name: 'name'},

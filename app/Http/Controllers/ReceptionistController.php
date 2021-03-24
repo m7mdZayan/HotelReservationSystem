@@ -57,19 +57,19 @@ class ReceptionistController extends Controller
             return Datatables::of($data)
                     ->addIndexColumn()
 
-                    ->addColumn('action', function($row){
+                    // ->addColumn('action', function($row){
 
-                           $btn = '<a href="javascript:void(0)" class="edit btn btn-info btn-sm ml-2">View</a>';
-                           $btn = $btn.'<a href="javascript:void(0)" class="edit btn btn-primary btn-sm ml-2">Edit</a>';
-                           $btn = $btn.'<a href="javascript:void(0)" class="edit btn btn-danger btn-sm ml-2">Delete</a>';
+                    //        $btn = '<a href="javascript:void(0)" class="edit btn btn-info btn-sm ml-2">View</a>';
+                    //        $btn = $btn.'<a href="javascript:void(0)" class="edit btn btn-primary btn-sm ml-2">Edit</a>';
+                    //        $btn = $btn.'<a href="javascript:void(0)" class="edit btn btn-danger btn-sm ml-2">Delete</a>';
 
-                            return $btn;
-                    })
+                    //         return $btn;
+                    // })
 
-                    ->rawColumns(['action'])
+                    // ->rawColumns(['action'])
                     ->make(true);
         }
-        return $dataTable->render('user');
+        return $dataTable->render('receptionist.show');
     }
 
     /**
