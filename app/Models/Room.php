@@ -22,9 +22,9 @@ class Room extends Model
     //     'capacity',
     // ];
 
-    // public function room()
-    // {
-    //     return $this->belongsTo(User::class,'created_by');
-    // }
+    public function manager()
+    {
+        return $this->belongsTo(User::class,'created_by');
+    }
 
 }
