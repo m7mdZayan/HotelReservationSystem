@@ -44,11 +44,6 @@ class HomeController extends Controller
         //             ->make(true);
         // }
         // return $dataTable->render('user');
-<<<<<<< HEAD
-    
-    return view('home');
-=======
         return view('home');
->>>>>>> f4557f5ca0390e0c0e7e1f5d525b8ef4645c1d0f
     }
 }

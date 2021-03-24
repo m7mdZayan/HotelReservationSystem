@@ -143,13 +143,6 @@
                     <p>user</p>
                 </a>
             </li>
-
-        <li class="nav-item">
-                <a href="#" class="nav-link">
-                    <i class="fas fa-pen mr-2"></i>
-                    <p>user</p>
-                </a>
-            </li>
         @endrole
 
       @role('manager')
