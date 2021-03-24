@@ -25,7 +25,7 @@ Route::get('/', function () {
     //auth()->guard()->user()->assignRole('admin');
     auth()->user()->assignRole('user');
     //dd(auth()->guard()->user());
-    return view('admin/dashboard');
+    return view('admin.index');
 })->middleware('auth');
 
 
@@ -37,7 +37,7 @@ Route::post('checkout',[App\Http\Controllers\CheckoutController::class, 'afterpa
 
 // Route::get('/user', [HomeController::class, 'index']);
 
-Route::get('/users', [App\Http\Controllers\HomeController::class, 'index'])->name('users.index');
+//Route::get('/users', [App\Http\Controllers\HomeController::class, 'index'])->name('users.index');
 //dashBoards Routes
 //admin
 Route::get('/admin', [AdminController::class, 'index'])->name('admin.index')->middleware('auth');
@@ -47,5 +47,8 @@ Route::get('/manager', [ManagerController::class, 'index'])->name('manager.index
 Route::get('/manager/floors',[ManagerController::class, 'show'])->name('manager.floors')->middleware('auth');
 //receptionist
 Route::get('/receptionist', [ReceptionistController::class, 'index'])->name('receptionist.index')->middleware('auth');
+
 //client
 Route::get('/client', [ClientController::class, 'index'])->name('client.index')->middleware('auth');
+Route::get('/client/create', [ClientController::class, 'make_reservation'])->name('client.make_reservation')->middleware('auth');
+Route::get('/client/show', [ClientController::class, 'my_reservation'])->name('client.my_reservation')->middleware('auth');
