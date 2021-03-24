@@ -25,7 +25,7 @@ Route::get('/', function () {
     //auth()->guard()->user()->assignRole('admin');
     auth()->user()->assignRole('user');
     //dd(auth()->guard()->user());
-    return view('admin/dashboard');
+    return view('admin/index');
 })->middleware('auth');
 
 
@@ -37,7 +37,7 @@ Route::post('checkout',[App\Http\Controllers\CheckoutController::class, 'afterpa
 
 // Route::get('/user', [HomeController::class, 'index']);
 
-Route::get('/users', [App\Http\Controllers\HomeController::class, 'index'])->name('users.index');
+// Route::get('/users', [App\Http\Controllers\HomeController::class, 'index'])->name('users.index');
 //dashBoards Routes
 //admin
 Route::get('/admin', [AdminController::class, 'index'])->name('admin.index')->middleware('auth');
@@ -45,6 +45,9 @@ Route::get('/admin', [AdminController::class, 'index'])->name('admin.index')->mi
 Route::get('/manager', [ManagerController::class, 'index'])->name('manager.index')->middleware('auth');
 
 Route::get('/manager/floors',[ManagerController::class, 'show'])->name('manager.floors')->middleware('auth');
+
+Route::get('/manager/rooms',[ManagerController::class, 'showrooms'])->name('manager.rooms')->middleware('auth');
+
 //receptionist
 Route::get('/receptionist', [ReceptionistController::class, 'index'])->name('receptionist.index')->middleware('auth');
 //client
