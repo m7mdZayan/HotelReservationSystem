@@ -98,7 +98,7 @@
 
 
             <li class="nav-item">
-                <a href="#" class="nav-link">
+                <a href="{{ route('manager.floors') }}" class="nav-link">
                     <i class="fas fa-building mr-2"></i>
                     <p>Manage Floors</p>
                 </a>

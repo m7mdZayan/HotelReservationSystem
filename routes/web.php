@@ -43,6 +43,8 @@ Route::get('/users', [App\Http\Controllers\HomeController::class, 'index'])->nam
 Route::get('/admin', [AdminController::class, 'index'])->name('admin.index')->middleware('auth');
 //manager
 Route::get('/manager', [ManagerController::class, 'index'])->name('manager.index')->middleware('auth');
+
+Route::get('/manager/floors',[ManagerController::class, 'show'])->name('manager.floors')->middleware('auth');
 //receptionist
 Route::get('/receptionist', [ReceptionistController::class, 'index'])->name('receptionist.index')->middleware('auth');
 //client

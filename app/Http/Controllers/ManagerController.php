@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+use App\Models\Room;
+use App\Models\Floor;
+
 class ManagerController extends Controller
 {
     /**
@@ -43,9 +46,15 @@ class ManagerController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show()
     {
-        //
+        // dd(request());
+        
+        // dd(Floor::find(1)); //correct
+        // $room = Floor::find(1)->manager->name; //correct
+        // dd($room);//correct
+
+        return view('manager.floors');
     }
 
     /**
