@@ -50,5 +50,6 @@ Route::get('/manager/rooms',[ManagerController::class, 'showrooms'])->name('mana
 
 //receptionist
 Route::get('/receptionist', [ReceptionistController::class, 'index'])->name('receptionist.index')->middleware('auth');
+Route::get('/receptionist/show', [ReceptionistController::class, 'show'])->name('receptionist.show')->middleware('auth');
 //client
 Route::get('/client', [ClientController::class, 'index'])->name('client.index')->middleware('auth');
