@@ -103,6 +103,13 @@
                 </a>
             </li>
 
+            <li class="nav-item">
+                <a href="{{ route('receptionist.show') }}" class="nav-link">
+                    <i class="fas fa-user mr-2"></i>
+                    <p>My Approved Clients</p>
+                </a>
+            </li>
+
         </ul>
       </nav>
       <!-- /.sidebar-menu -->

@@ -30,7 +30,7 @@ class ClientController extends Controller
 
     public function my_reservation(UserDataTable $dataTable, Request $request)
     {
-        $id = User::find()->id;
+        $id = User::find(2)->id;
         if ($request->ajax()) {
             $data = Reservation::select('*')->where('client_id',$id);
             return Datatables::of($data)

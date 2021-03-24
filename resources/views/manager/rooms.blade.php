@@ -17,10 +17,10 @@
     <table class="table table-bordered data-table">
         <thead>
             <tr>
-                <!-- <th>No</th> -->
-                <th>Floor No</th>
-                <th>Floor Name</th>
-                <th>Manager Name</th>
+                <th>No</th>
+                <th>Room No</th>
+                <th>Capacity</th>
+                <th>floor_id</th>
 
                 <!-- {{-- <th>ban</th> --}} -->
                 <th>Action</th>
@@ -39,15 +39,12 @@
     var table = $('.data-table').DataTable({
         processing: true,
         serverSide: true,
-        ajax: "{{ route('manager.floors') }}",
+        ajax: "{{ route('manager.rooms') }}",
         columns: [
-            // {data: 'id', name: 'id'},
+            {data: 'id', name: 'id'},
             {data: 'number', name: 'number'},
-            {data: 'name', name: 'name'},
-            {data: 'created_by', name: 'created_by'},
-
-            
-            // {data: 'floor_id', name: 'floor_id'},
+            {data: 'capacity', name: 'capacity'},
+            {data: 'floor_id', name: 'floor_id'},
              
             // {data: 'created_at', name: 'ban', orderable: false, searchable: false},
             {data: 'action', name: 'action', orderable: false, searchable: false},

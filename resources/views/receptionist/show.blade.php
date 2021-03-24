@@ -5,55 +5,54 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css" />
     <link href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css" rel="stylesheet">
     <link href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css" rel="stylesheet">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script>  
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/jquery.validate.js"></script>
     <script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
     <script src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js"></script>
 </head>
 <body>
-    
+
 <div class="container">
     <table class="table table-bordered data-table">
         <thead>
             <tr>
-                <!-- <th>No</th> -->
-                <th>Floor No</th>
-                <th>Floor Name</th>
-                <th>Manager Name</th>
-
-                <!-- {{-- <th>ban</th> --}} -->
-                <th>Action</th>
+                <th>No</th>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Mobile</th>
+                <th>Country</th>
+                <th>Gender</th>
+                {{-- <th>ban</th> --}}
+                {{-- <th>Action</th> --}}
             </tr>
         </thead>
         <tbody>
         </tbody>
     </table>
 </div>
-   
+
 </body>
-   
+
 <script type="text/javascript">
   $(function () {
-    
+
     var table = $('.data-table').DataTable({
         processing: true,
         serverSide: true,
-        ajax: "{{ route('manager.floors') }}",
+        ajax: "{{ route('receptionist.show') }}",
         columns: [
-            // {data: 'id', name: 'id'},
-            {data: 'number', name: 'number'},
+            {data: 'id', name: 'id'},
             {data: 'name', name: 'name'},
-            {data: 'created_by', name: 'created_by'},
-
-            
-            // {data: 'floor_id', name: 'floor_id'},
-             
+            {data: 'email', name: 'email'},
             // {data: 'created_at', name: 'ban', orderable: false, searchable: false},
-            {data: 'action', name: 'action', orderable: false, searchable: false},
+            // {data: 'action', name: 'action', orderable: false, searchable: false},
+            {data: 'mobile', name:'mobile'},
+            {data:'country', name:'country'},
+            {data:'gender', name:'gender'}
         ]
     });
-    
+
   });
 </script>
 </html>
