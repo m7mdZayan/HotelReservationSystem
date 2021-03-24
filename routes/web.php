@@ -24,16 +24,12 @@ use App\Http\Controllers\ReceptionistController;
 Route::get('/', function () {
     //auth()->guard()->user()->assignRole('admin');
     // auth()->user()->assignRole('user');
-    //auth()->user()->assignRole('manager');
+    // auth()->user()->assignRole('manager');
     // auth()->user()->assignRole('admin');
-     auth()->user()->assignRole('receptionist');
+    //  auth()->user()->assignRole('receptionist');
 
     //dd(auth()->guard()->user());
-<<<<<<< HEAD
-    return view('admin/index');
-=======
     return view('admin.index');
->>>>>>> f4557f5ca0390e0c0e7e1f5d525b8ef4645c1d0f
 })->middleware('auth');
 
 
@@ -45,10 +41,7 @@ Route::post('checkout',[App\Http\Controllers\CheckoutController::class, 'afterpa
 
 // Route::get('/user', [HomeController::class, 'index']);
 
-<<<<<<< HEAD
-=======
 //Route::get('/users', [App\Http\Controllers\HomeController::class, 'index'])->name('users.index');
->>>>>>> f4557f5ca0390e0c0e7e1f5d525b8ef4645c1d0f
 // Route::get('/users', [App\Http\Controllers\HomeController::class, 'index'])->name('users.index');
 //dashBoards Routes
 //admin
