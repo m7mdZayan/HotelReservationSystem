@@ -10,7 +10,7 @@ use Spatie\Permission\Traits\HasRoles;
 // use Cog\Contracts\Ban\Bannable as BannableContract;
 // use Cog\Laravel\Ban\Traits\Bannable;
 
-class User extends Authenticatable 
+class User extends Authenticatable
 {
     use HasFactory, Notifiable, HasRoles;
 
@@ -20,11 +20,14 @@ class User extends Authenticatable
      * @var array
      */
     protected $table = "users";
-    
+
     protected $fillable = [
         'name',
         'email',
         'password',
+        'gender',
+        'phone',
+        'country',
     ];
 
     /**
