@@ -89,7 +89,10 @@
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
 
-            <li class="nav-item">
+
+
+               @role('admin')
+               <li class="nav-item">
                 <a href="#" class="nav-link">
                     <i class="fas fa-user-tie mr-2"></i>
                     <p>Manage Managers</p>
@@ -122,7 +125,84 @@
                     <i class="fas fa-th mr-2"></i>
                     <p>Manage Rooms</p>
                 </a>
+            </li>     
+      @endrole 
+
+      @role('user')
+        <li class="nav-item">
+                <a href="#" class="nav-link">
+                    <i class="fas fa-user mr-2"></i>
+                    <p>user</p>
+                </a>
             </li>
+
+            <li class="nav-item">
+                <a href="#" class="nav-link">
+                    <i class="fas fa-user mr-2"></i>
+                    <p>user</p>
+                </a>
+            </li>
+
+        <li class="nav-item">
+                <a href="#" class="nav-link">
+                    <i class="fas fa-pen mr-2"></i>
+                    <p>user</p>
+                </a>
+            </li>
+        @endrole
+
+      @role('manager')
+      <li class="nav-item">
+                <a href="#" class="nav-link">
+                    <i class="fas fa-user-edit mr-2"></i>
+                    <p>Manage Receptionists</p>
+                </a>
+            </li>
+
+
+            <li class="nav-item">
+                <a href="{{ route('manager.floors') }}" class="nav-link">
+                    <i class="fas fa-building mr-2"></i>
+                    <p>Manage Floors</p>
+                </a>
+            </li>
+
+            <li class="nav-item">
+                <a href="#" class="nav-link">
+                    <i class="fas fa-th mr-2"></i>
+                    <p>Manage Rooms</p>
+                </a>
+        </li>  
+      @endrole
+
+<!--
+        @role('receptionist')
+        <li class="nav-item">
+                <a href="#" class="nav-link">
+                    <i class="fas fa-user mr-2"></i>
+                    <p>Manage Clients</p>
+                </a>
+            </li>
+
+            <li class="nav-item">
+                <a href="#" class="nav-link">
+                    <i class="fas fa-user mr-2"></i>
+                    <p>My Approved clients</p>
+                </a>
+            </li>
+
+        <li class="nav-item">
+                <a href="#" class="nav-link">
+                    <i class="fas fa-pen mr-2"></i>
+                    <p>Show Reservations</p>
+                </a>
+            </li>
+        @endrole
+
+        
+-->
+
+          
         </ul>
       </nav>
       <!-- /.sidebar-menu -->
@@ -132,7 +212,6 @@
 
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
-
   </div>
   <!-- /.content-wrapper -->
   <footer class="main-footer">
