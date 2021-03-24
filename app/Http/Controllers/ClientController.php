@@ -3,6 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\DataTables\UserDataTable;
+use App\Models\Reservation;
+use App\Models\User;
+use Yajra\DataTables\Facades\DataTables;
+
 
 class ClientController extends Controller
 {
@@ -11,10 +16,46 @@ class ClientController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    
     public function index()
-    {
-        return view('client.index');
+    {   $users = User::all();
+        //$id = User::find(1)->id;
+
+        return view('client.index', [
+            'users' => $users,
+            //'id' => $id
+        ]);  
+        //return view('client.index');
     }
+
+    public function my_reservation(UserDataTable $dataTable, Request $request)
+    {
+        $id = User::find(2)->id;
+        if ($request->ajax()) {
+            $data = Reservation::select('*')->where('client_id',$id);
+            return Datatables::of($data)
+                    ->addIndexColumn()
+                    
+                    // ->addColumn('action', function($row){
+       
+                    //        $btn = '<a href="javascript:void(0)" class="edit btn btn-info btn-sm ml-2">View</a>';
+                    //        $btn = $btn.'<a href="javascript:void(0)" class="edit btn btn-primary btn-sm ml-2">Edit</a>';
+                    //        $btn = $btn.'<a href="javascript:void(0)" class="edit btn btn-danger btn-sm ml-2">Delete</a>';
+         
+                    //         return $btn;
+                    // })
+                    
+                    // ->rawColumns(['action'])
+                    ->make(true);
+        }
+        return $dataTable->render('client.my_reservation');
+        //return view('client.my_reservation')
+    }
+
+    public function make_reservation(){
+        return view('client.make_reservation');
+    }
+
 
     /**
      * Show the form for creating a new resource.

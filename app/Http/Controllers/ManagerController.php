@@ -3,9 +3,12 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
 use App\Models\Room;
 use App\Models\Floor;
+use App\DataTables\UserDataTable;
+use App\Models\User;
+use Yajra\DataTables\Facades\DataTables;
+
 
 class ManagerController extends Controller
 {
@@ -46,15 +49,65 @@ class ManagerController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show()
-    {
-        // dd(request());
-        
-        // dd(Floor::find(1)); //correct
-        // $room = Floor::find(1)->manager->name; //correct
-        // dd($room);//correct
+    // public function show()
+    // {
+    //     // dd(request());
+    //     // dd(Floor::find(1)); //correct
+        // $floor = Floor::find(1)->manager->name; //correct
+    //     return view('manager.floors');
+    // }
 
-        return view('manager.floors');
+    public function show(UserDataTable $dataTable, Request $request)
+        {
+                    $floor = Floor::find(1)->manager->name; //correct
+                    // dd($floor);
+                     // dd(Floor::find(1)); //correct
+        if ($request->ajax()) {
+            $data = Floor::select('*');
+            return Datatables::of($data)
+                    ->addIndexColumn()
+                    
+                    ->addColumn('action', function($row){
+       
+                           $btn = '<a href="javascript:void(0)" class="edit btn btn-info btn-sm ml-2">View</a>';
+                           $btn = $btn.'<a href="javascript:void(0)" class="edit btn btn-primary btn-sm ml-2">Edit</a>';
+                           $btn = $btn.'<a href="javascript:void(0)" class="edit btn btn-danger btn-sm ml-2">Delete</a>';
+                            
+                            return $btn;
+                    })
+                    
+                    ->rawColumns(['action'])
+                    ->make(true);
+            }
+            return $dataTable->render('manager.floors');
+        }
+
+        public function showrooms(UserDataTable $dataTable, Request $request)
+        {
+        if ($request->ajax()) {
+            $data = Room::select('*');
+            return Datatables::of($data)
+                    ->addIndexColumn()
+                    
+                    ->addColumn('action', function($row){
+       
+                           $btn = '<a href="javascript:void(0)" class="edit btn btn-info btn-sm ml-2">View</a>';
+                           $btn = $btn.'<a href="javascript:void(0)" class="edit btn btn-primary btn-sm ml-2">Edit</a>';
+                           $btn = $btn.'<a href="javascript:void(0)" class="edit btn btn-danger btn-sm ml-2">Delete</a>';
+         
+                            return $btn;
+                    })
+                    
+                    ->rawColumns(['action'])
+                    ->make(true);
+        }
+        return $dataTable->render('manager.rooms');
+        
+        // $room = Room::find(1)->manager->name; //correct
+        // dd($room);//correct
+        // return view('manager.rooms');
+
+
     }
 
     /**

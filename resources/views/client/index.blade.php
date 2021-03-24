@@ -85,23 +85,16 @@
                with font-awesome or any other icon font library -->
 
             <li class="nav-item">
-                <a href="#" class="nav-link">
+                <a href="{{ route('client.my_reservation') }}" class="nav-link">
                     <i class="fas fa-user-tie mr-2"></i>
-                    <p>Manage Managers</p>
+                    <p>My reservation</p>
                 </a>
             </li>
 
             <li class="nav-item">
-                <a href="#" class="nav-link">
+                <a href="{{ route('client.make_reservation') }}" class="nav-link">
                     <i class="fas fa-user-edit mr-2"></i>
-                    <p>Manage Receptionists</p>
-                </a>
-            </li>
-
-            <li class="nav-item">
-                <a href="#" class="nav-link">
-                    <i class="fas fa-user-alt mr-2"></i>
-                    <p>Manage Customers</p>
+                    <p>Make reservation</p>
                 </a>
             </li>
 
