@@ -212,8 +212,17 @@
             </li>
         @endrole
 
-        
- 
+
+<li class="nav-item">
+                <a class="nav-link text-danger" href="{{ route('logout') }}" onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();" >
+                    <i class="fas fa-sign-out-alt mr-2"></i>
+                    <p>Logout</p>
+                </a>
+            </li>
+            <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                        @csrf
+                                    </form>
 
           
         </ul>
