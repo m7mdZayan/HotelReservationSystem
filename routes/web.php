@@ -9,6 +9,7 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\ClientController;
 use App\Http\Controllers\ManagerController;
 use App\Http\Controllers\ReceptionistController;
+use App\Http\Controllers\RoomsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -47,7 +48,7 @@ Route::get('/manager', [ManagerController::class, 'index'])->name('manager.index
 
 Route::get('/manager/floors',[ManagerController::class, 'show'])->name('manager.floors')->middleware('auth');
 
-Route::get('/manager/rooms',[ManagerController::class, 'showrooms'])->name('manager.rooms')->middleware('auth');
+Route::get('/manager/rooms',[RoomsController::class, 'index'])->name('manager.rooms')->middleware('auth');
 
 //receptionist
 Route::get('/receptionist', [ReceptionistController::class, 'index'])->name('receptionist.index')->middleware('auth');
