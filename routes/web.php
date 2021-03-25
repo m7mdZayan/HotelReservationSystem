@@ -25,7 +25,7 @@ use App\Http\Controllers\FloorsController;
 
 Route::get('/', function () {
     //auth()->guard()->user()->assignRole('admin');
-    auth()->user()->assignRole('user');
+    // auth()->user()->assignRole('user');
     // auth()->user()->assignRole('manager');
     // auth()->user()->assignRole('admin');
     //  auth()->user()->assignRole('receptionist');
@@ -34,7 +34,7 @@ Route::get('/', function () {
     return view('admin.index');
 })->middleware('auth');
 
-Route::get('profile',[App\Http\Controllers\UserController::class, 'profile']) ;
+Route::get('profile',[App\Http\Controllers\UserController::class, 'profile'])->name('profile')->middleware('auth');
 Route::post('profile', [App\Http\Controllers\UserController::class, 'update_avatar']);
 
 Auth::routes();
