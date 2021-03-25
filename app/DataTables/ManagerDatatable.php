@@ -4,6 +4,7 @@ namespace App\DataTables;
 
 use App\Models\Manager;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Auth;
 use Yajra\DataTables\DataTableAbstract;
 use Yajra\DataTables\Html\Builder;
 use Yajra\DataTables\Services\DataTable;
@@ -36,6 +37,7 @@ class ManagerDatatable extends DataTable
     public function query(Manager $model): \Illuminate\Database\Eloquent\Builder
     {
         return $model->newQuery()
+
             ->select('users.*');
     }
 

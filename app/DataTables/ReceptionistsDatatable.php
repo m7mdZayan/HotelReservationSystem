@@ -7,6 +7,7 @@ use Carbon\Carbon;
 use Yajra\DataTables\DataTableAbstract;
 use Yajra\DataTables\Html\Builder;
 use Yajra\DataTables\Services\DataTable;
+use Illuminate\Support\Facades\Auth;
 
 class ReceptionistsDatatable extends DataTable
 {
@@ -37,7 +38,7 @@ class ReceptionistsDatatable extends DataTable
     {
         return $model->newQuery()
             ->with('manager')
-            ->select('users.*');
+            ->select('users.*')->where('created_by',Auth::id() );
     }
 
     /**
