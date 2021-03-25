@@ -6,7 +6,9 @@ use Illuminate\Http\Request;
 use App\Models\Client;
 use Yajra\DataTables\Facades\DataTables;
 use App\DataTables\ClientsDatatable;
-
+use App\Models\User;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Redirect;
 
 class ReceptionistController extends Controller
 {
@@ -26,9 +28,23 @@ class ReceptionistController extends Controller
 
     }
 
-    public function show_reservations()
+    public function approve_clients()
     {
-        
+        $users = DB::table('users')->get();
+        return view('receptionist.approve',['users' =>$users]);
+    }
+    public function status(Request $request , $id){
+        $data = User::find($id);
+        if($data->status == 0)
+        {
+            #code.
+            $data->status = 1;
+        }
+        else{
+            $data->status = 0;
+        }
+        $data->save();
+        return Redirect::to('receptionist.approved')->with('message', $data->name.'Status has been changed successfully');
     }
     /**
      * Show the form for creating a new resource.
@@ -63,7 +79,7 @@ class ReceptionistController extends Controller
     // }
     public function show()
     {
-       
+
     }
 
     /**

@@ -33,6 +33,7 @@ class User extends Authenticatable
         'mobile',
         'country',
         'gender',
+        'status',
     ];
 
     /**

@@ -20,11 +20,11 @@ class ReceptionistsDatatable extends DataTable
     {
         return datatables()
             ->eloquent($query)
-            ->addColumn('actions', 'actions')
+            //->addColumn('actions', 'actions')
             ->editColumn('created_at', function ($receptionist) {
                 return $receptionist->created_at ? with(new Carbon($receptionist->created_at))->diffForHumans() : '';
-            })
-            ->rawColumns(['actions']);
+            });
+           // ->rawColumns(['actions']);
     }
 
     /**
@@ -79,16 +79,16 @@ class ReceptionistsDatatable extends DataTable
                 'name' => 'created_at',
                 'data' => 'created_at',
                 'title' => 'Created at'
-            ],
-            [
-                'name' => 'actions',
-                'data' => 'actions',
-                'title' => 'Actions',
-                'printable' => false,
-                'exportable' => false,
-                'searchable' => false,
-                'orderable' => false,
-            ],
+            ]
+            // [
+            //     'name' => 'actions',
+            //     'data' => 'actions',
+            //     'title' => 'Actions',
+            //     'printable' => false,
+            //     'exportable' => false,
+            //     'searchable' => false,
+            //     'orderable' => false,
+            // ],
         ];
     }
 

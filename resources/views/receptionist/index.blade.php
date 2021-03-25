@@ -99,14 +99,14 @@
             <li class="nav-item">
                 <a href="#" class="nav-link">
                     <i class="fas fa-user mr-2"></i>
-                    <p>Manage Clients</p>
+                    <p>My approved Clients</p>
                 </a>
             </li>
 
             <li class="nav-item">
                 <a href="{{ route('receptionist.show') }}" class="nav-link">
                     <i class="fas fa-user mr-2"></i>
-                    <p>My Approved Clients</p>
+                    <p>Manage Clients</p>
                 </a>
             </li>
 
