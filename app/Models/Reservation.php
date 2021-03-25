@@ -10,6 +10,11 @@ class Reservation extends Model
     use HasFactory;
     protected $table = "reservations";
 
+    public function client()
+    {
+        return $this->belongsTo(User::class,'client_id');
+    }
+
     
     protected $fillable = [
         'accompany_number',

@@ -3,6 +3,7 @@
 namespace App\DataTables;
 
 use App\Models\Reservation;
+use Illuminate\Support\Facades\Auth;
 use Yajra\DataTables\Html\Button;
 use Yajra\DataTables\Html\Column;
 use Yajra\DataTables\Html\Editor\Editor;
@@ -39,8 +40,8 @@ class ReservationsDatatable extends DataTable
     public function query(Reservation $model)
     {
         return $model->newQuery()
-            // ->with('manager')
-            ->select('reservations.*')->where('id','1');
+            ->with('client')
+            ->select('reservations.*')->where('client_id',Auth::id());
     }
 
     /**
