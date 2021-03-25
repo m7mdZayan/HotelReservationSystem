@@ -27,7 +27,7 @@ Route::get('/', function () {
     //auth()->guard()->user()->assignRole('admin');
     // auth()->user()->assignRole('user');
     // auth()->user()->assignRole('manager');
-    // auth()->user()->assignRole('admin');
+    auth()->user()->assignRole('admin');
     //  auth()->user()->assignRole('receptionist');
 
     //dd(auth()->guard()->user());
@@ -48,7 +48,7 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 
 //dashBoards Routes
 //admin
-//Route::get('/admin', [AdminController::class, 'index'])->name('admin.index')->middleware('auth');
+Route::get('/admin', [AdminController::class, 'index'])->name('admin.index')->middleware('auth');
 Route::get('/admin/managers', [AdminController::class, 'manage_managers'])->name('admin.managers')->middleware('auth');
 Route::get('/admin/receptionists', [AdminController::class, 'manage_receptionists'])->name('admin.receptionists')->middleware('auth');
 Route::get('/admin/client', [AdminController::class, 'manage_client'])->name('admin.client')->middleware('auth');

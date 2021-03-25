@@ -2,6 +2,8 @@
 
 namespace App\DataTables;
 
+use Illuminate\Support\Facades\Auth;
+
 use App\Models\Room;
 use Carbon\Carbon;
 use Yajra\DataTables\DataTableAbstract;
@@ -20,7 +22,21 @@ class RoomsDatatable extends DataTable
     {
         return datatables()
             ->eloquent($query)
-            ->addColumn('actions', 'actions')
+            // ->addColumn('actions', 'actions')
+                        ->addColumn('actions', function($row){
+                            $roomids=Room::where('created_by',Auth::id())->pluck('id')->toArray();
+            
+                            if (!in_array($row->id,$roomids)){
+                                return;
+                            }
+                               $btn = '<a href="javascript:void(0)" class="edit btn btn-info btn-sm ml-2">View</a>';
+                               $btn = $btn.'<a href="javascript:void(0)" class="edit btn btn-primary btn-sm ml-2">Edit</a>';
+                               $btn = $btn.'<a href="javascript:void(0)" class="edit btn btn-danger btn-sm ml-2">Delete</a>';
+            
+                                return $btn;
+                        })
+
+
             ->editColumn('created_at', function ($room) {
                 return $room->created_at ? with(new Carbon($room->created_at))->diffForHumans() : '';
             })
