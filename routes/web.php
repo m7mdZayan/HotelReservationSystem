@@ -27,7 +27,7 @@ Route::get('/', function () {
     //auth()->guard()->user()->assignRole('admin');
     // auth()->user()->assignRole('user');
     // auth()->user()->assignRole('manager');
-    auth()->user()->assignRole('admin');
+    // auth()->user()->assignRole('admin');
     //  auth()->user()->assignRole('receptionist');
 
     //dd(auth()->guard()->user());
