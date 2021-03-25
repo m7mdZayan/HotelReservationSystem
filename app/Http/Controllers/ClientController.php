@@ -3,9 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\DataTables\UserDataTable;
+use App\DataTables\ClientsDatatable;
 use App\Models\Reservation;
-use App\Models\User;
+use App\Models\Client;
 use Yajra\DataTables\Facades\DataTables;
 
 
@@ -18,38 +18,39 @@ class ClientController extends Controller
      */
     
     public function index()
-    {   $users = User::all();
-        //$id = User::find(1)->id;
+    {   
+        // $users = User::all();
+        // //$id = User::find(1)->id;
 
-        return view('client.index', [
-            'users' => $users,
-            //'id' => $id
-        ]);  
+        // return view('client.index', [
+        //     'users' => $users,
+        //     //'id' => $id
+        // ]);  
         //return view('client.index');
     }
 
-    public function my_reservation(UserDataTable $dataTable, Request $request)
+    public function my_reservation()
     {
-        $id = User::find(2)->id;
-        if ($request->ajax()) {
-            $data = Reservation::select('*')->where('client_id',$id);
-            return Datatables::of($data)
-                    ->addIndexColumn()
+        // $id = User::find(2)->id;
+        // if ($request->ajax()) {
+        //     $data = Reservation::select('*')->where('client_id',$id);
+        //     return Datatables::of($data)
+        //             ->addIndexColumn()
                     
-                    // ->addColumn('action', function($row){
+        //             // ->addColumn('action', function($row){
        
-                    //        $btn = '<a href="javascript:void(0)" class="edit btn btn-info btn-sm ml-2">View</a>';
-                    //        $btn = $btn.'<a href="javascript:void(0)" class="edit btn btn-primary btn-sm ml-2">Edit</a>';
-                    //        $btn = $btn.'<a href="javascript:void(0)" class="edit btn btn-danger btn-sm ml-2">Delete</a>';
+        //             //        $btn = '<a href="javascript:void(0)" class="edit btn btn-info btn-sm ml-2">View</a>';
+        //             //        $btn = $btn.'<a href="javascript:void(0)" class="edit btn btn-primary btn-sm ml-2">Edit</a>';
+        //             //        $btn = $btn.'<a href="javascript:void(0)" class="edit btn btn-danger btn-sm ml-2">Delete</a>';
          
-                    //         return $btn;
-                    // })
+        //             //         return $btn;
+        //             // })
                     
-                    // ->rawColumns(['action'])
-                    ->make(true);
-        }
-        return $dataTable->render('client.my_reservation');
-        //return view('client.my_reservation')
+        //             // ->rawColumns(['action'])
+        //             ->make(true);
+        // }
+        // return $dataTable->render('client.my_reservation');
+        return view('client.my_reservation');
     }
 
     public function make_reservation(){

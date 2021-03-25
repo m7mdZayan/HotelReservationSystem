@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\DataTables\ManagerDatatable;
+use App\DataTables\ReceptionistsDatatable;
+use App\DataTables\ClientsDatatable;
 
 class AdminController extends Controller
 {
@@ -14,6 +17,23 @@ class AdminController extends Controller
     public function index()
     {
         return view('admin/index');
+    }
+
+    public function manage_managers(ManagerDatatable $manager)
+    {
+        //dd($manager);
+        return $manager->render('manager.rooms');
+
+    }
+
+    public function manage_receptionists(ReceptionistsDatatable $receptionist)
+    {
+        return $receptionist->render('manager.rooms');
+    }
+
+    public function manage_client(ClientsDatatable $clients)
+    {
+        return $clients->render('manager.rooms');
     }
 
     /**

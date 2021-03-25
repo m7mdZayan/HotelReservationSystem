@@ -2,14 +2,14 @@
 
 namespace App\DataTables;
 
-use App\Models\User;
+use App\Models\TestDatatabl;
 use Yajra\DataTables\Html\Button;
 use Yajra\DataTables\Html\Column;
 use Yajra\DataTables\Html\Editor\Editor;
 use Yajra\DataTables\Html\Editor\Fields;
 use Yajra\DataTables\Services\DataTable;
 
-class UserDataTable extends DataTable
+class TestDatatablsDataTable extends DataTable
 {
     /**
      * Build DataTable class.
@@ -21,16 +21,16 @@ class UserDataTable extends DataTable
     {
         return datatables()
             ->eloquent($query)
-            ->addColumn('action', 'user.action');
+            ->addColumn('action', 'testdatatabls.action');
     }
 
     /**
      * Get query source of dataTable.
      *
-     * @param \App\Models\User $model
+     * @param \App\Models\TestDatatabl $model
      * @return \Illuminate\Database\Eloquent\Builder
      */
-    public function query(User $model)
+    public function query(TestDatatabl $model)
     {
         return $model->newQuery();
     }
@@ -43,17 +43,18 @@ class UserDataTable extends DataTable
     public function html()
     {
         return $this->builder()
-                    ->setTableId('user-table')
+                    ->setTableId('testdatatabls-table')
                     ->columns($this->getColumns())
                     ->minifiedAjax()
-                    ->orderBy(1);
-                    // ->buttons(
-                    //     Button::make('create'),
-                    //     Button::make('export'),
-                    //     Button::make('print'),
-                    //     Button::make('reset'),
-                    //     Button::make('reload')
-                    // );
+                    ->dom('Bfrtip')
+                    ->orderBy(1)
+                    ->buttons(
+                        Button::make('create'),
+                        Button::make('export'),
+                        Button::make('print'),
+                        Button::make('reset'),
+                        Button::make('reload')
+                    );
     }
 
     /**
@@ -64,22 +65,15 @@ class UserDataTable extends DataTable
     protected function getColumns()
     {
         return [
-            // Column::computed('action')
-            //       ->exportable(false)
-            //       ->printable(false)
-            //       ->width(60)
-            //       ->addClass('text-center'),
-            // Column::make('id'),
-            // Column::make('add your columns'),
-            //  Column::make('add your columns'),
-            // Column::make('created_at'),
-            // Column::make('updated_at'),
-            'id',
-            'name',
-            'email',
-            'actions',
-            
-            
+            Column::computed('action')
+                  ->exportable(false)
+                  ->printable(false)
+                  ->width(60)
+                  ->addClass('text-center'),
+            Column::make('id'),
+            Column::make('add your columns'),
+            Column::make('created_at'),
+            Column::make('updated_at'),
         ];
     }
 
@@ -90,6 +84,6 @@ class UserDataTable extends DataTable
      */
     protected function filename()
     {
-        return 'User_' . date('YmdHis');
+        return 'TestDatatabls_' . date('YmdHis');
     }
 }

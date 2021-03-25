@@ -2,13 +2,13 @@
 
 namespace App\DataTables;
 
-use App\Models\Room;
+use App\Models\Manager;
 use Carbon\Carbon;
 use Yajra\DataTables\DataTableAbstract;
 use Yajra\DataTables\Html\Builder;
 use Yajra\DataTables\Services\DataTable;
 
-class RoomsDatatable extends DataTable
+class ManagerDatatable extends DataTable
 {
     /**
      * Build DataTable class.
@@ -21,15 +21,10 @@ class RoomsDatatable extends DataTable
         return datatables()
             ->eloquent($query)
             ->addColumn('actions', 'actions')
-            ->editColumn('created_at', function ($room) {
-                return $room->created_at ? with(new Carbon($room->created_at))->diffForHumans() : '';
+            ->editColumn('created_at', function ($manager) {
+                return $manager->created_at ? with(new Carbon($manager->created_at))->diffForHumans() : '';
             })
-            ->editColumn('status', function ($room) {
-                return $room->status ? '<span class="badge badge-primary">Available</span>'
-                    : '<span class="badge badge-warning">Reserved</span>';
-            })
-            ->rawColumns(['actions'])
-            ->escapeColumns('status');
+            ->rawColumns(['actions']);
     }
 
     /**
@@ -38,11 +33,10 @@ class RoomsDatatable extends DataTable
      * @param Room $model
      * @return \Illuminate\Database\Eloquent\Builder
      */
-    public function query(Room $model): \Illuminate\Database\Eloquent\Builder
+    public function query(Manager $model): \Illuminate\Database\Eloquent\Builder
     {
         return $model->newQuery()
-            ->with('manager')
-            ->select('rooms.*');
+            ->select('users.*');
     }
 
     /**
@@ -53,7 +47,7 @@ class RoomsDatatable extends DataTable
     public function html(): Builder
     {
         return $this->builder()
-            ->setTableId('roomsDatatable')
+            ->setTableId('managerDatatable')
             ->columns($this->getColumns())
             ->minifiedAjax()
             ->orderBy(1)
@@ -71,39 +65,14 @@ class RoomsDatatable extends DataTable
         return [
 
             [
-                'name' => 'id',
-                'data' => 'id',
-                'title' => 'Room_id'
+                'name' => 'name',
+                'data' => 'name',
+                'title' => 'Name'
             ],
             [
-                'name' => 'number',
-                'data' => 'number',
-                'title' => 'Room_number'
-            ],
-            [
-                'name' => 'capacity',
-                'data' => 'capacity',
-                'title' => 'Capacity'
-            ],
-            [
-                'name' => 'price',
-                'data' => 'price',
-                'title' => 'Price'
-            ],
-            [
-                'name' => 'status',
-                'data' => 'status',
-                'title' => 'Status'
-            ],
-            [
-                'name' => 'created_by',
-                'data' => 'manager.name',
-                'title' => 'Created by'
-            ],
-            [
-                'name' => 'floor_id',
-                'data' => 'floor_id',
-                'title' => 'Floor_id'
+                'name' => 'email',
+                'data' => 'email',
+                'title' => 'Email'
             ],
             [
                 'name' => 'created_at',
@@ -129,6 +98,6 @@ class RoomsDatatable extends DataTable
      */
     protected function filename(): string
     {
-        return 'Rooms_' . date('YmdHis');
+        return 'Manager_' . date('YmdHis');
     }
 }

@@ -28,7 +28,7 @@ class CheckoutController extends Controller
 
     }
 
-    public function afterPayment()
+    public function after_payment()
     {
         echo 'Payment Has been Received';
     }

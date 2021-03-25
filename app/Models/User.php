@@ -21,6 +21,11 @@ class User extends Authenticatable
      */
     protected $table = "users";
 
+    public function manager()
+    {
+        return $this->belongsTo(User::class,'created_by');
+    }
+
     protected $fillable = [
         'name',
         'email',

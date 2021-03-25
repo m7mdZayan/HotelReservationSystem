@@ -109,35 +109,35 @@
 
                @role('admin')
                <li class="nav-item">
-                <a href="#" class="nav-link">
+                <a href="{{ route('admin.managers') }}" class="nav-link">
                     <i class="fas fa-user-tie mr-2"></i>
                     <p>Manage Managers</p>
                 </a>
             </li>
 
             <li class="nav-item">
-                <a href="#" class="nav-link">
+                <a href="{{ route('admin.receptionists') }}" class="nav-link">
                     <i class="fas fa-user-edit mr-2"></i>
                     <p>Manage Receptionists</p>
                 </a>
             </li>
 
             <li class="nav-item">
-                <a href="#" class="nav-link">
+                <a href="{{ route('admin.client') }}" class="nav-link">
                     <i class="fas fa-user-alt mr-2"></i>
                     <p>Manage Customers</p>
                 </a>
             </li>
 
             <li class="nav-item">
-                <a href="#" class="nav-link">
+                <a href="{{ route('manager.floors') }}" class="nav-link">
                     <i class="fas fa-building mr-2"></i>
                     <p>Manage Floors</p>
                 </a>
             </li>
 
             <li class="nav-item">
-                <a href="#" class="nav-link">
+                <a href="{{ route('manager.rooms') }}" class="nav-link">
                     <i class="fas fa-th mr-2"></i>
                     <p>Manage Rooms</p>
                 </a>
@@ -148,14 +148,14 @@
   
       @role('user')
         <li class="nav-item">
-                <a href="#" class="nav-link">
+                <a href="{{ route('client.make_reservation') }}" class="nav-link">
                     <i class="fas fa-user mr-2"></i>
                     <p>Make Reservation</p>
                 </a>
             </li>
 
             <li class="nav-item">
-                <a href="#" class="nav-link">
+                <a href="{{ route('client.my_reservation') }}" class="nav-link">
                     <i class="fas fa-user mr-2"></i>
                     <p>My Reservation</p>
                 </a>
@@ -165,7 +165,7 @@
 
       @role('manager')
       <li class="nav-item">
-                <a href="#" class="nav-link">
+                <a href="{{ route('manager.receptionists') }}" class="nav-link">
                     <i class="fas fa-user-edit mr-2"></i>
                     <p>Manage Receptionists</p>
                 </a>
@@ -180,7 +180,7 @@
             </li>
 
             <li class="nav-item">
-                <a href="#" class="nav-link">
+                <a href="{{ route('manager.rooms') }}" class="nav-link">
                     <i class="fas fa-th mr-2"></i>
                     <p>Manage Rooms</p>
                 </a>
@@ -191,21 +191,21 @@
 
         @role('receptionist')
         <li class="nav-item">
-                <a href="#" class="nav-link">
+                <a href="{{ route('receptionist.client') }}" class="nav-link">
                     <i class="fas fa-user mr-2"></i>
                     <p>Manage Clients</p>
                 </a>
             </li>
 
             <li class="nav-item">
-                <a href="#" class="nav-link">
+                <a href="{{ route('receptionist.approved') }}" class="nav-link">
                     <i class="fas fa-user mr-2"></i>
                     <p>My Approved clients</p>
                 </a>
             </li>
 
         <li class="nav-item">
-                <a href="#" class="nav-link">
+                <a href="{{ route('receptionist.approved') }}" class="nav-link">
                     <i class="fas fa-pen mr-2"></i>
                     <p>Show Reservations</p>
                 </a>

@@ -3,9 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\DataTables\UserDataTable;
-use App\Models\User;
+use App\Models\Client;
 use Yajra\DataTables\Facades\DataTables;
+use App\DataTables\ClientsDatatable;
+
 
 class ReceptionistController extends Controller
 {
@@ -19,6 +20,16 @@ class ReceptionistController extends Controller
         return view('receptionist.index');
     }
 
+    public function manage_client(ClientsDatatable $users)
+    {
+        return $users->render('manager.rooms');
+
+    }
+
+    public function show_reservations()
+    {
+        
+    }
     /**
      * Show the form for creating a new resource.
      *
@@ -50,26 +61,9 @@ class ReceptionistController extends Controller
     // {
 
     // }
-    public function show(UserDataTable $dataTable, Request $request)
+    public function show()
     {
-        if ($request->ajax()) {
-            $data = User::select('*');
-            return Datatables::of($data)
-                    ->addIndexColumn()
-
-                    // ->addColumn('action', function($row){
-
-                    //        $btn = '<a href="javascript:void(0)" class="edit btn btn-info btn-sm ml-2">View</a>';
-                    //        $btn = $btn.'<a href="javascript:void(0)" class="edit btn btn-primary btn-sm ml-2">Edit</a>';
-                    //        $btn = $btn.'<a href="javascript:void(0)" class="edit btn btn-danger btn-sm ml-2">Delete</a>';
-
-                    //         return $btn;
-                    // })
-
-                    // ->rawColumns(['action'])
-                    ->make(true);
-        }
-        return $dataTable->render('receptionist.show');
+       
     }
 
     /**
