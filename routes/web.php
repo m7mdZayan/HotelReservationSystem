@@ -44,8 +44,6 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 // Route::get('/user', [HomeController::class, 'index']);
 
 //Route::get('/users', [App\Http\Controllers\HomeController::class, 'index'])->name('users.index');
-// Route::get('/users', [App\Http\Controllers\HomeController::class, 'index'])->name('users.index');
-
 //dashBoards Routes
 //admin
 Route::get('/admin', [AdminController::class, 'index'])->name('admin.index')->middleware('auth');
