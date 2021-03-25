@@ -9,6 +9,7 @@ class Reservation extends Model
 {
     use HasFactory;
     protected $table = "reservations";
+
     
     protected $fillable = [
         'accompany_number',

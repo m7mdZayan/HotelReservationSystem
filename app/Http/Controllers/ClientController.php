@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\DataTables\ClientsDatatable;
+use App\DataTables\ReservationsDatatable;
 use App\Models\Reservation;
 use App\Models\Client;
 use Yajra\DataTables\Facades\DataTables;
@@ -29,28 +30,10 @@ class ClientController extends Controller
         //return view('client.index');
     }
 
-    public function my_reservation()
+    public function my_reservation(ReservationsDatatable $client)
     {
-        // $id = User::find(2)->id;
-        // if ($request->ajax()) {
-        //     $data = Reservation::select('*')->where('client_id',$id);
-        //     return Datatables::of($data)
-        //             ->addIndexColumn()
-                    
-        //             // ->addColumn('action', function($row){
-       
-        //             //        $btn = '<a href="javascript:void(0)" class="edit btn btn-info btn-sm ml-2">View</a>';
-        //             //        $btn = $btn.'<a href="javascript:void(0)" class="edit btn btn-primary btn-sm ml-2">Edit</a>';
-        //             //        $btn = $btn.'<a href="javascript:void(0)" class="edit btn btn-danger btn-sm ml-2">Delete</a>';
-         
-        //             //         return $btn;
-        //             // })
-                    
-        //             // ->rawColumns(['action'])
-        //             ->make(true);
-        // }
-        // return $dataTable->render('client.my_reservation');
-        return view('client.my_reservation');
+         return $client->render('client.my_reservation');
+        //eturn view('client.my_reservation');
     }
 
     public function make_reservation(){

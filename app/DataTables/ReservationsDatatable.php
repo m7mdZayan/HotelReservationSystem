@@ -40,7 +40,7 @@ class ReservationsDatatable extends DataTable
     {
         return $model->newQuery()
             // ->with('manager')
-            ->select('reservations.*');
+            ->select('reservations.*')->where('id','1');
     }
 
     /**
