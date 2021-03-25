@@ -26,8 +26,6 @@ class HomeController extends Controller
      */
     public function index()
     {
-<<<<<<< HEAD
-=======
         // if ($request->ajax()) {
         //     $data = User::select('*');
         //     return Datatables::of($data)
@@ -46,7 +44,6 @@ class HomeController extends Controller
         //             ->make(true);
         // }
         // return $dataTable->render('user');
->>>>>>> origin/client_approval
         return view('home');
     }
 }

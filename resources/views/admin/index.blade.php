@@ -95,7 +95,7 @@
           <img src="/uploads/avatars/{{ Auth::user()->avatar_image }}" style="width: 32px; height:32px; position:absolute; top:10px; left:10px; border-reduis:50%;"/>
         </div>
         <div class="info">
-          <a href="#" class="d-block ml-4 mt-1">Alexander Pierce</a>
+          <a href="#" class="d-block ml-4 mt-1">{{ Auth::user()->name }}</a>
         </div>
       </div>
 
