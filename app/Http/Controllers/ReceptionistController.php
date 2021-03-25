@@ -44,7 +44,7 @@ class ReceptionistController extends Controller
             $data->status = 0;
         }
         $data->save();
-        return Redirect::to('receptionist.approved')->with('message', $data->name.'Status has been changed successfully');
+        return Redirect::to('receptionist.approve')->with('message', $data->name.'Status has been changed successfully');
     }
     /**
      * Show the form for creating a new resource.
