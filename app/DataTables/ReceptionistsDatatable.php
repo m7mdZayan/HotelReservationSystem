@@ -8,7 +8,7 @@ use Yajra\DataTables\DataTableAbstract;
 use Yajra\DataTables\Html\Builder;
 use Yajra\DataTables\Services\DataTable;
 use Illuminate\Support\Facades\Auth;
-
+use App\Models\User;
 class ReceptionistsDatatable extends DataTable
 {
     /**
@@ -36,9 +36,15 @@ class ReceptionistsDatatable extends DataTable
      */
     public function query(Receptionist $model): \Illuminate\Database\Eloquent\Builder
     {
-        return $model->newQuery()
-            ->with('manager')
-            ->select('users.*')->where('created_by',Auth::id() );
+        // $user= Auth::user();
+        // dd($user);
+        // $users = User::role('manager')->get();
+        // $user->hasRole('manager')
+        // if($users){
+        return User::role('receptionist')->newQuery();
+            // ->with('manager')
+            // ->select('users.*')->where('created_by',Auth::id() );
+        // }
     }
 
     /**
