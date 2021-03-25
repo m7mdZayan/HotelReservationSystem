@@ -20,11 +20,12 @@ class FloorsDatatable extends DataTable
     {
         return datatables()
             ->eloquent($query)
-            ->addColumn('actions', 'actions')
+            ->addColumn('actions', 'actions') //name , view file
+            ->addColumn('new', 'new')
             ->editColumn('created_at', function ($room) {
                 return $room->created_at ? with(new Carbon($room->created_at))->diffForHumans() : '';
             })
-            ->rawColumns(['actions']);
+            ->rawColumns(['actions','new']);
     }
 
     /**
@@ -89,6 +90,11 @@ class FloorsDatatable extends DataTable
                 'name' => 'created_at',
                 'data' => 'created_at',
                 'title' => 'Created at'
+            ],
+            [
+                'name' => 'new',
+                'data' => 'new',
+                'title' => 'new'
             ],
             [
                 'name' => 'actions',
