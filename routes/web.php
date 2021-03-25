@@ -34,6 +34,8 @@ Route::get('/', function () {
     return view('admin.index');
 })->middleware('auth');
 
+Route::get('profile',[App\Http\Controllers\UserController::class, 'profile']) ;
+Route::post('profile', [App\Http\Controllers\UserController::class, 'update_avatar']);
 
 Auth::routes();
 
