@@ -10,4 +10,10 @@ class Manager extends Model
     use HasFactory;
     protected $table = "users";
 
+
+    public function manager()
+    {
+        return $this->belongsTo(User::class,'created_by');
+    }
+
 }
