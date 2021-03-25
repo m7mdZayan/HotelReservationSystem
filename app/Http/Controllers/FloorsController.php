@@ -19,6 +19,7 @@ class FloorsController extends Controller
      */
     public function index(FloorsDatatable $floor)
     {
+        // dd($floor);
         //$floors = Floor::all();
         return $floor->render('manager.floors');
         //return $room->render('manager.rooms', ['title' => 'Rooms', 'floors' => $floors]);
