@@ -35,16 +35,15 @@ class ReceptionistController extends Controller
     }
     public function status(Request $request , $id){
         $data = User::find($id);
-        if($data->status == 0)
+         if($data->status == 0)
         {
             #code.
             $data->status = 1;
         }
-        else{
-            $data->status = 0;
-        }
+        
+
         $data->save();
-        return Redirect::to('receptionist.approve')->with('message', $data->name.'Status has been changed successfully');
+        return Redirect::back()->with('message', $data->name.'Status has been changed successfully');
     }
     /**
      * Show the form for creating a new resource.
