@@ -61,8 +61,8 @@ Route::get('/manager/rooms',[RoomsController::class, 'index'])->name('manager.ro
 //receptionist
 //Route::get('/receptionist', [ReceptionistController::class, 'index'])->name('receptionist.index')->middleware('auth');
 Route::get('/receptionist/show', [ReceptionistController::class, 'show'])->name('receptionist.show')->middleware('auth');
-Route::get('/receptionist/manage', [ReceptionistController::class, 'manage_client'])->name('receptionist.client')->middleware('auth');
-Route::get('/receptionist/approved', [ReceptionistController::class, 'approve_clients'])->name('receptionist.approved')->middleware('auth');
+Route::get('/receptionist/manage', [ReceptionistController::class, 'approve_clients'])->name('receptionist.client')->middleware('auth');
+Route::get('/receptionist/approved', [ReceptionistController::class, 'manage_client'])->name('receptionist.approved')->middleware('auth');
 Route::get('status/{id}', [ReceptionistController::class, 'status'] )->name('status');
 //client
 //Route::get('/client', [ClientController::class, 'index'])->name('client.index')->middleware('auth');

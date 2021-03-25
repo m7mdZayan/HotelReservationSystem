@@ -47,7 +47,7 @@
                                                     @else Active
                                                     @endif
                                                 </td>
-                                                <td><a href="{{ route('status', ['id'=>$user->id]) }}">
+                                                <td><a class="btn btn-primary" href="{{ route('status', ['id'=>$user->id]) }}">
                                                         @if ($user->status == 1)
                                                         Inactive
                                                         @else Active

@@ -9,6 +9,7 @@ use App\DataTables\ClientsDatatable;
 use App\Models\User;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Redirect;
+use App\DataTables\ReservationsDatatable;
 
 class ReceptionistController extends Controller
 {
@@ -40,7 +41,7 @@ class ReceptionistController extends Controller
             #code.
             $data->status = 1;
         }
-        
+
 
         $data->save();
         return Redirect::back()->with('message', $data->name.'Status has been changed successfully');
@@ -76,9 +77,9 @@ class ReceptionistController extends Controller
     // {
 
     // }
-    public function show()
+    public function show(ReservationsDatatable $client)
     {
-
+        return $client->render('receptionist.show');
     }
 
     /**

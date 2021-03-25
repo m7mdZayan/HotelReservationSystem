@@ -90,15 +90,15 @@ class ClientsDatatable extends DataTable
                 'data' => 'gender',
                 'title' => 'Gender'
             ],
-            [
-                'name' => 'actions',
-                'data' => 'actions',
-                'title' => 'Actions',
-                'printable' => false,
-                'exportable' => false,
-                'searchable' => false,
-                'orderable' => false,
-            ],
+            // [
+            //     'name' => 'actions',
+            //     'data' => 'actions',
+            //     'title' => 'Actions',
+            //     'printable' => false,
+            //     'exportable' => false,
+            //     'searchable' => false,
+            //     'orderable' => false,
+            // ],
         ];
     }
 

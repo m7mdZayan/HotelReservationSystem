@@ -205,7 +205,7 @@
             </li>
 
         <li class="nav-item">
-                <a href="{{ route('receptionist.approved') }}" class="nav-link">
+                <a href="{{ route('receptionist.show') }}" class="nav-link">
                     <i class="fas fa-pen mr-2"></i>
                     <p>Show Reservations</p>
                 </a>

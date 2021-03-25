@@ -9,6 +9,7 @@ use Yajra\DataTables\Html\Editor\Editor;
 use Yajra\DataTables\Html\Editor\Fields;
 use Yajra\DataTables\Services\DataTable;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Auth;
 
 
 class ReservationsDatatable extends DataTable
@@ -39,8 +40,9 @@ class ReservationsDatatable extends DataTable
     public function query(Reservation $model)
     {
         return $model->newQuery()
-            // ->with('manager')
-            ->select('reservations.*');
+             ->with('client')
+             ->select('reservations.*');
+
     }
 
     /**
@@ -83,14 +85,19 @@ class ReservationsDatatable extends DataTable
                 'title' => 'Paid price'
             ],
             [
-                'name' => 'actions',
-                'data' => 'actions',
-                'title' => 'Actions',
-                'printable' => false,
-                'exportable' => false,
-                'searchable' => false,
-                'orderable' => false,
+                'name' => 'client_id',
+                'data' => 'client.name',
+                'title' => 'Name'
             ],
+            // [
+            //     'name' => 'actions',
+            //     'data' => 'actions',
+            //     'title' => 'Actions',
+            //     'printable' => false,
+            //     'exportable' => false,
+            //     'searchable' => false,
+            //     'orderable' => false,
+            // ],
         ];
     }
 
