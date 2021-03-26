@@ -57,7 +57,7 @@ Route::get('/admin/show', [AdminController::class, 'show'])->name('admin.show')-
 //manager
 //Route::get('/manager', [ManagerController::class, 'index'])->name('manager.index')->middleware('auth');
 Route::get('/manager/receptionists',[ManagerController::class, 'manage_receptionists'])->name('manager.receptionists')->middleware('auth');
-Route::get('/manager/floors',[floorsController::class, 'index'])->name('manager.floors')->middleware('auth');
+// Route::get('/manager/floors',[floorsController::class, 'index'])->name('manager.floors')->middleware('auth');
 Route::get('/manager/rooms',[RoomsController::class, 'index'])->name('manager.rooms')->middleware('auth');
 
 //receptionist
@@ -73,3 +73,11 @@ Route::get('/client/show', [ClientController::class, 'my_reservation'])->name('c
 Route::get('checkout',[CheckoutController::class, 'checkout'])->name('client.checkout');
 Route::post('checkout',[CheckoutController::class, 'after_payment'])->name('checkout.credit-card');
 
+//floors
+Route::get('/floors',[floorsController::class, 'index'])->name('floors.index')->middleware('auth');
+Route::get('/floors/{id}/edit',[floorsController::class, 'edit'])->name('floors.edit')->middleware('auth');
+Route::put('/floors/{id}',[floorsController::class, 'update'])->name('floors.update')->middleware('auth');
+Route::delete('/floors/{id}', [floorsController::class, 'destroy'])->name('floors.destroy')->middleware('auth');
+
+Route::get('/floors/create',[floorsController::class,'create'])->name('floors.create')->middleware('auth');
+Route::post('/floors',[floorsController::class,'store'])->name('floors.store')->middleware('auth');
