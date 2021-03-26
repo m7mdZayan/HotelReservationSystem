@@ -74,38 +74,52 @@ class ReservationsDatatable extends DataTable
      */
     protected function getColumns()
     {
-        return [
+        if (Auth::user()->hasRole('user')) {
+            return [
 
-            [
-                'name' => 'accompany_number',
-                'data' => 'accompany_number',
-                'title' => 'Accompany No.'
-            ],
-            [
-                'name' => 'room_id',
-                'data' => 'room_id',
-                'title' => 'Room Id'
-            ],
-            [
-                'name' => 'paid_price',
-                'data' => 'paid_price',
-                'title' => 'Paid price'
-            ],
-            [
-                'name' => 'client_id',
-                'data' => 'client.name',
-                'title' => 'Name'
-            ],
-            // [
-            //     'name' => 'actions',
-            //     'data' => 'actions',
-            //     'title' => 'Actions',
-            //     'printable' => false,
-            //     'exportable' => false,
-            //     'searchable' => false,
-            //     'orderable' => false,
-            // ],
-        ];
+                [
+                    'name' => 'accompany_number',
+                    'data' => 'accompany_number',
+                    'title' => 'Accompany No.'
+                ],
+                [
+                    'name' => 'room_id',
+                    'data' => 'room_id',
+                    'title' => 'Room Id'
+                ],
+                [
+                    'name' => 'paid_price',
+                    'data' => 'paid_price',
+                    'title' => 'Paid price'
+                ],
+            ];
+        }
+        else{
+            return [
+
+                [
+                    'name' => 'accompany_number',
+                    'data' => 'accompany_number',
+                    'title' => 'Accompany No.'
+                ],
+                [
+                    'name' => 'room_id',
+                    'data' => 'room_id',
+                    'title' => 'Room Id'
+                ],
+                [
+                    'name' => 'paid_price',
+                    'data' => 'paid_price',
+                    'title' => 'Paid price'
+                ],
+                [
+                    'name' => 'client_id',
+                    'data' => 'client.name',
+                    'title' => 'Name'
+                ],
+            ];
+        }
+        
     }
 
     /**

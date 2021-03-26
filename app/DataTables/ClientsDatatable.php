@@ -24,22 +24,29 @@ class ClientsDatatable extends DataTable
             ->eloquent($query)
             // ->addColumn('actions', 'actions')
             // ->addColumn('actions', 'actions')
-                 ->addColumn('actions', function($row){
+            ->addColumn('actions', function($row){
                 $ids=Client::where('created_by',Auth::id())->pluck('id')->toArray();
-
-                if (!Auth::user()->hasRole('admin') && !in_array($row->id,$ids)){
+                if(Auth::user()->hasRole('receptionist')){
+                    return'<a class="btn btn-primary" href="' . route('status',['id'=>$row->id]) .'">Inactive</a>';
+                    
+                }
+                elseif (!Auth::user()->hasRole('admin') && !in_array($row->id,$ids)){
                     return;
                 }
-                   $btn = '<a href="javascript:void(0)" class="edit btn btn-info btn-sm ml-2">View</a>';
-                   $btn = $btn.'<a href="javascript:void(0)" class="edit btn btn-primary btn-sm ml-2">Edit</a>';
-                   $btn = $btn.'<a href="javascript:void(0)" class="edit btn btn-danger btn-sm ml-2">Delete</a>';
-
-                    return $btn;
+                $btn = '<a href="javascript:void(0)" class="edit btn btn-info btn-sm ml-2">View</a>';
+                $btn = $btn.'<a href="javascript:void(0)" class="edit btn btn-primary btn-sm ml-2">Edit</a>';
+                $btn = $btn.'<a href="javascript:void(0)" class="edit btn btn-danger btn-sm ml-2">Delete</a>';
+                return $btn;
             })
-            ->editColumn('created_at', function ($client) {
-                return $client->created_at ? with(new Carbon($client->created_at))->diffForHumans() : '';
+            // ->editColumn('created_at', function ($client) {
+            //     return $client->created_at ? with(new Carbon($client->created_at))->diffForHumans() : '';
+            // })
+            ->editColumn('status', function ($room) {
+                return $room->status ? '<span class="badge badge-primary">Active</span>'
+                    : '<span class="badge badge-warning">Inactive</span>';
             })
-            ->rawColumns(['actions']);
+            ->rawColumns(['actions'])
+            ->escapeColumns('status');
     }
 
     /**
@@ -50,6 +57,11 @@ class ClientsDatatable extends DataTable
      */
     public function query(Client $model): \Illuminate\Database\Eloquent\Builder
     {
+        if (Auth::user()->hasRole('receptionist')) {
+            return $model->newQuery()
+            //->with('manager')
+            ->select('users.*');
+        }
         return User::role('user')->newQuery();
             // ->with('manager')
             // ->select('users.*');
@@ -62,6 +74,7 @@ class ClientsDatatable extends DataTable
      */
     public function html(): Builder
     {
+        
         return $this->builder()
             ->setTableId('clientsDatatable')
             ->columns($this->getColumns())
@@ -78,43 +91,89 @@ class ClientsDatatable extends DataTable
      */
     protected function getColumns(): array
     {
-        return [
+        if (Auth::user()->hasRole('receptionist')) {
+            return [
 
-            [
-                'name' => 'name',
-                'data' => 'name',
-                'title' => 'Name'
-            ],
-            [
-                'name' => 'email',
-                'data' => 'email',
-                'title' => 'Email'
-            ],
-            [
-                'name' => 'mobile',
-                'data' => 'mobile',
-                'title' => 'Mobile'
-            ],
-            [
-                'name' => 'country',
-                'data' => 'country',
-                'title' => 'Country'
-            ],
-            [
-                'name' => 'gender',
-                'data' => 'gender',
-                'title' => 'Gender'
-            ],
-            [
-                'name' => 'actions',
-                'data' => 'actions',
-                'title' => 'Actions',
-                'printable' => false,
-                'exportable' => false,
-                'searchable' => false,
-                'orderable' => false,
-            ],
-        ];
+                [
+                    'name' => 'name',
+                    'data' => 'name',
+                    'title' => 'Name'
+                ],
+                [
+                    'name' => 'email',
+                    'data' => 'email',
+                    'title' => 'Email'
+                ],
+                [
+                    'name' => 'mobile',
+                    'data' => 'mobile',
+                    'title' => 'Mobile'
+                ],
+                [
+                    'name' => 'country',
+                    'data' => 'country',
+                    'title' => 'Country'
+                ],
+                [
+                    'name' => 'gender',
+                    'data' => 'gender',
+                    'title' => 'Gender'
+                ],
+                [
+                    'name' => 'status',
+                    'data' => 'status',
+                    'title' => 'status'
+                ],
+                [
+                    'name' => 'actions',
+                    'data' => 'actions',
+                    'title' => 'Actions',
+                    'printable' => false,
+                    'exportable' => false,
+                    'searchable' => false,
+                    'orderable' => false,
+                ],
+            ];
+        }
+            else{
+                return [
+
+                    [
+                        'name' => 'name',
+                        'data' => 'name',
+                        'title' => 'Name'
+                    ],
+                    [
+                        'name' => 'email',
+                        'data' => 'email',
+                        'title' => 'Email'
+                    ],
+                    [
+                        'name' => 'mobile',
+                        'data' => 'mobile',
+                        'title' => 'Mobile'
+                    ],
+                    [
+                        'name' => 'country',
+                        'data' => 'country',
+                        'title' => 'Country'
+                    ],
+                    [
+                        'name' => 'gender',
+                        'data' => 'gender',
+                        'title' => 'Gender'
+                    ],
+                    [
+                        'name' => 'actions',
+                        'data' => 'actions',
+                        'title' => 'Actions',
+                        'printable' => false,
+                        'exportable' => false,
+                        'searchable' => false,
+                        'orderable' => false,
+                    ],
+                ];
+            }
     }
 
     /**

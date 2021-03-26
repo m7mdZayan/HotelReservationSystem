@@ -29,11 +29,13 @@ class ReceptionistController extends Controller
 
     }
 
-    public function approve_clients()
+    public function approve_clients(ClientsDatatable $users)
     {
-        $users = DB::table('users')->get();
-        return view('receptionist.approve',['users' =>$users]);
+        //$users = DB::table('users')->get();
+        return $users->render('manager.rooms');
+        //return view('receptionist.approve',['users' =>$users]);
     }
+
     public function status(Request $request , $id){
         $data = User::find($id);
          if($data->status == 0)
