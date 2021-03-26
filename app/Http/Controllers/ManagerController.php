@@ -9,6 +9,8 @@ use App\DataTables\ClientsDatatable;
 use App\Models\Client;
 use Yajra\DataTables\Facades\DataTables;
 use App\DataTables\ReceptionistsDatatable;
+use App\Models\User;
+use Illuminate\Support\Facades\Auth; 
 
 
 
@@ -105,5 +107,21 @@ class ManagerController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function ban($id)
+    {
+        $user= User::where('id', $id)->first();
+        //dd($user->isban);
+        if($user->isban == 1)
+        {
+            User::where('id', $id)->update(array('isban' => '0'));    
+        }
+        else
+        {
+            User::where('id', $id)->update(array('isban' => '1'));
+        }
+        //User::where('id', $id)->update(array('isban' => '1'));
+        return redirect()->route('manager.receptionists');
     }
 }

@@ -38,7 +38,7 @@ use App\Http\Middleware\UserMiddleware;
 Route::group(['middleware' => ['auth','isUser']], function(){
     Route::get('/', function () {
         return view('admin.index');
-    });
+    })->name('myProfile');
 });
 
 Route::get('profile',[App\Http\Controllers\UserController::class, 'profile'])->name('profile')->middleware('auth');
@@ -89,3 +89,6 @@ Route::delete('/floors/{id}', [floorsController::class, 'destroy'])->name('floor
 
 Route::get('/floors/create',[floorsController::class,'create'])->name('floors.create')->middleware('auth');
 Route::post('/floors',[floorsController::class,'store'])->name('floors.store')->middleware('auth');
+
+// ban and un ban
+Route::get('/manager/receptionists/{id}',[ManagerController::class, 'ban'])->name('ban')->middleware('auth'); 
