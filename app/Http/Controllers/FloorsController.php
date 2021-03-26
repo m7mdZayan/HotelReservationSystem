@@ -20,9 +20,19 @@ class FloorsController extends Controller
     public function index(FloorsDatatable $floor)
     {
         // dd($floor);
-        //$floors = Floor::all();
-        return $floor->render('manager.floors');
+        // $floors = Floor::all();
+        // dd($floors[0]->name);
+
+        $floors= Floor::all();
+        // dd($floors[0]->name);
+        return $floor->render('floors.index');
+        // return view('posts.index', [
+        //     'posts' => $posts,
+        // ]);
         //return $room->render('manager.rooms', ['title' => 'Rooms', 'floors' => $floors]);
+        
+        
+        // <a class="btn btn-primary" href="{{ route('floors.index', ['']) }}" >Update</a>
     }
 
     /**
@@ -65,7 +75,17 @@ class FloorsController extends Controller
      */
     public function edit($id)
     {
-        //
+        // dd($id);
+        // $floor = ['id' => 1, 'title' => 'Laravel', 'description' => 'Show Post Description', 'posted_by' => 'Ahmed', 'created_at' => '2021-03-13'];
+        // dd($floor);
+
+        //new commented
+        $floor = Floor::find($id);
+        // dd($floor);
+        return view('floors.edit', [
+            'floor'=> $floor,
+            // 'users'=> User::all(),
+        ]);
     }
 
     /**
@@ -75,9 +95,13 @@ class FloorsController extends Controller
      * @param int $id
      * @return Response
      */
-    public function update(Request $request, $id)
+    public function update($id, Request $myRequestObject)
     {
-        //
+        // dd($myRequestObject->all());
+        $data = $myRequestObject->all();
+        // dd($data);
+        Floor::find($id)->update($data);
+        return redirect()->route('floors.index');
     }
 
     /**
@@ -92,3 +116,6 @@ class FloorsController extends Controller
 
     }
 }
+
+// <!-- <a href="{{ route('rooms.index') }}" class="nav-link"> -->
+// <!-- <a class="btn btn-primary" href="{{ route('floors.index', ['id'=>1]) }}" >Update</a> -->

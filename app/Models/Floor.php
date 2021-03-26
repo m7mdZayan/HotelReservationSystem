@@ -9,6 +9,11 @@ class Floor extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'name',
+        'number',
+    ];
+
     public function manager()
     {
         return $this->belongsTo(User::class,'created_by');
