@@ -78,3 +78,6 @@ Route::get('/floors',[floorsController::class, 'index'])->name('floors.index')->
 Route::get('/floors/{id}/edit',[floorsController::class, 'edit'])->name('floors.edit')->middleware('auth');
 Route::put('/floors/{id}',[floorsController::class, 'update'])->name('floors.update')->middleware('auth');
 Route::delete('/floors/{id}', [floorsController::class, 'destroy'])->name('floors.destroy')->middleware('auth');
+
+Route::get('/floors/create',[floorsController::class,'create'])->name('floors.create')->middleware('auth');
+Route::post('/floors',[floorsController::class,'store'])->name('floors.store')->middleware('auth');

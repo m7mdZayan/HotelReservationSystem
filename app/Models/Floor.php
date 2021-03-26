@@ -12,6 +12,7 @@ class Floor extends Model
     protected $fillable = [
         'name',
         'number',
+        'created_by',
     ];
 
     public function manager()

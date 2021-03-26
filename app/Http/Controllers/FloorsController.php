@@ -43,7 +43,7 @@ class FloorsController extends Controller
      */
     public function create()
     {
-        //
+        return view('floors.create');
     }
 
     /**
@@ -52,9 +52,14 @@ class FloorsController extends Controller
      * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\JsonResponse
      */
-    public function store(Request $request)
+    public function store(StoreFloorRequest $myRequestObject)
     {
-       
+        // dd(1);
+        // dd($myRequestObject);
+        $data = $myRequestObject->all();
+        // dd($data);
+        Floor::create($data);
+        return redirect()->route('floors.index');
     }
 
     /**
@@ -96,7 +101,7 @@ class FloorsController extends Controller
      * @param int $id
      * @return Response
      */
-    public function update($id, Request $myRequestObject)
+    public function update($id, StoreFloorRequest $myRequestObject)
     {
         // dd($myRequestObject->all());
         $data = $myRequestObject->all();

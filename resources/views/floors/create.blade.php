@@ -24,10 +24,10 @@
 
 </head>
 <body>
-  <p>hi from floor/edit</p>
+
   <div class="container">
 
-  @if ($errors->any())
+    @if ($errors->any())
       <div class="alert alert-danger">
           <ul>
               @foreach ($errors->all() as $error)
@@ -35,23 +35,31 @@
               @endforeach
           </ul>
       </div>
-   @endif
-   
-    <form method="POST" action="{{ route('floors.update', ['id' => $floor['id']] ) }}">
-      @method('PUT')
+    @endif
+
+    <form method="POST" action="{{route('floors.store')}}">
       @csrf
-      <!-- <div class="mb-3">
-        <label for="number" class="form-label">Number</label>
-        <input type="number" class="form-control" id="number" aria-describedby="emailHelp" name="number" value="{{$floor["number"]}}">
-      </div> -->
       <div class="mb-3">
-        <label for="name" class="form-label">Name</label>
-        <input type="text" class="form-control" id="name" aria-describedby="emailHelp" name="name" value="{{$floor["name"]}}">
+        <label for="name" class="form-label">Floor Name</label>
+        <input type="text" class="form-control" id="name" name="name" aria-describedby="emailHelp">
+      </div>
+      <div class="mb-3">
+        <!-- <label for="number" class="form-label">Floor Number</label> -->
+        <input type="hidden" class="form-control" id="number" name="number" aria-describedby="emailHelp" value="x">
+      </div>
+      <div>
+      <input type="hidden" name="created_by" value="{{ Auth::user()->id }}">
       </div>
 
-      <button type="submit" class="btn btn-success">Update</button>
+      <button type="submit" class="btn btn-success">Create</button>
     </form>
   </div>
+
+  <script>
+    document.getElementById("number").value =
+    Math.floor(Math.random() * 100000);
+  </script>
+
 </body>
 </html>
 
