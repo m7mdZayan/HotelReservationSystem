@@ -51,6 +51,8 @@ Route::get('/admin/managers', [AdminController::class, 'manage_managers'])->name
 Route::get('/admin/receptionists', [AdminController::class, 'manage_receptionists'])->name('admin.receptionists')->middleware('auth');
 Route::get('/admin/client', [AdminController::class, 'manage_client'])->name('admin.client')->middleware('auth');
 Route::get('/admin/show/{user}', [AdminController::class, 'show'])->name('admin.show')->middleware('auth');
+Route::get('/admin/delete/{user}', [AdminController::class, 'destroy'])->name('admin.destroy')->middleware('auth');
+Route::get('/admin/update/{user}', [AdminController::class, 'update'])->name('admin.update')->middleware('auth');
 
 
 
