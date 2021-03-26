@@ -36,7 +36,7 @@ class ReceptionistsDatatable extends DataTable
                     return $btn;
             })
             ->editColumn('created_at', function ($receptionist) {
-                return $receptionist->created_at ? with(new Carbon($receptionist->created_at))->diffForHumans() : '';
+                return $receptionist->created_at ? Carbon::createFromFormat('Y-m-d H:i:s', $receptionist->created_at)->format('Y-m-d'): '';
             })
 
             ->editColumn('isban', function ($receptionist) {
