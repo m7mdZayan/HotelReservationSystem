@@ -32,11 +32,16 @@ class ReceptionistsDatatable extends DataTable
                    $btn = '<a href="javascript:void(0)" class="edit btn btn-info btn-sm ml-2">View</a>';
                    $btn = $btn.'<a href="javascript:void(0)" class="edit btn btn-primary btn-sm ml-2">Edit</a>';
                    $btn = $btn.'<a href="javascript:void(0)" class="edit btn btn-danger btn-sm ml-2">Delete</a>';
-
+                   $btn = $btn.'<a href="javascript:void(0)" class="edit btn btn-warning btn-sm ml-2">Ban|Unban</a>';
                     return $btn;
             })
             ->editColumn('created_at', function ($receptionist) {
                 return $receptionist->created_at ? with(new Carbon($receptionist->created_at))->diffForHumans() : '';
+            })
+
+            ->editColumn('isban', function ($receptionist) {
+                
+                return $receptionist->isban ? 'Banned' : 'Not Banned';
             })
            ->rawColumns(['actions']);
     }
@@ -108,6 +113,11 @@ class ReceptionistsDatatable extends DataTable
                 'searchable' => false,
                 'orderable' => false,
             ],
+            [
+                'name' => 'isban',
+                'data' => 'isban',
+                'title' => 'Ban|Unban',
+            ]
         ];
     }
 
