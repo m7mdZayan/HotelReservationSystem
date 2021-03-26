@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\DataTables\ManagerDatatable;
 use App\DataTables\ReceptionistsDatatable;
 use App\DataTables\ClientsDatatable;
+use App\Models\User;
 
 class AdminController extends Controller
 {
@@ -63,9 +64,13 @@ class AdminController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($user)
     {
         //
+        $user = User::find($user);
+        return view('admin.show', [
+            'user' => $user
+        ]);
     }
 
     /**
