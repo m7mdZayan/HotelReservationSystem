@@ -70,7 +70,7 @@ Route::get('/receptionist/approved', [ReceptionistController::class, 'show_reser
 Route::get('/client', [ClientController::class, 'index'])->name('client.index')->middleware('auth');
 Route::get('/client/create', [ClientController::class, 'make_reservation'])->name('client.make_reservation')->middleware('auth');
 Route::get('/client/show', [ClientController::class, 'my_reservation'])->name('client.my_reservation')->middleware('auth');
-Route::get('/client/reservation_form/{client}/{room}', [ClientController::class, 'reservation_form'])->name('client.reservation_form')->middleware('auth');
+Route::get('/client/reservation_form/{room}', [ClientController::class, 'reservation_form'])->name('client.reservation_form')->middleware('auth');
 Route::post('checkout/',[ClientController::class, 'store'])->name('client.checkout');
 Route::get('payment/',[CheckoutController::class, 'payment'])->name('checkout.credit-card');
 

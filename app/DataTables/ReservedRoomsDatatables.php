@@ -24,7 +24,7 @@ class ReservedRoomsDatatables extends DataTable
         return datatables()
             ->eloquent($query)
             ->addColumn('actions', function($room){
-                return '<a class="btn btn-primary" href="' . route('client.reservation_form',['client' => Auth::id(), 'room' => $room['id']]) .'">Reserve</a>';
+                return '<a class="btn btn-primary" href="' . route('client.reservation_form',['room' => $room['id']]) .'">Reserve</a>';
             })
             ->editColumn('status', function ($room) {
                 return $room->status ? '<span class="badge badge-primary">Available</span>'
