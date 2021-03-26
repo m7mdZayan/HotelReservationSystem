@@ -141,11 +141,11 @@
                     <i class="fas fa-th mr-2"></i>
                     <p>Manage Rooms</p>
                 </a>
-            </li>     
-      @endrole 
+            </li>
+      @endrole
 
-    
-  
+
+
       @role('user')
         <li class="nav-item">
                 <a href="{{ route('client.make_reservation') }}" class="nav-link">
@@ -184,10 +184,10 @@
                     <i class="fas fa-th mr-2"></i>
                     <p>Manage Rooms</p>
                 </a>
-        </li>  
+        </li>
       @endrole
 
-    
+
 
         @role('receptionist')
         <li class="nav-item">
@@ -205,7 +205,7 @@
             </li>
 
         <li class="nav-item">
-                <a href="{{ route('receptionist.approved') }}" class="nav-link">
+                <a href="{{ route('receptionist.show') }}" class="nav-link">
                     <i class="fas fa-pen mr-2"></i>
                     <p>Show Reservations</p>
                 </a>
@@ -224,7 +224,7 @@
                                         @csrf
                                     </form>
 
-          
+
         </ul>
       </nav>
       <!-- /.sidebar-menu -->
@@ -234,7 +234,7 @@
 
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
-      
+
   </div>
   <!-- /.content-wrapper -->
   <footer class="main-footer">
