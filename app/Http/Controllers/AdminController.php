@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\DataTables\ManagerDatatable;
 use App\DataTables\ReceptionistsDatatable;
 use App\DataTables\ClientsDatatable;
+use App\Models\Manager;
 use App\Models\User;
 
 class AdminController extends Controller
@@ -68,7 +69,6 @@ class AdminController extends Controller
     public function show($user)
     {
         $user = User::find($user);
-        // dd($user);
         return view('admin.show', [
             'user' => $user
         ]);
@@ -83,6 +83,10 @@ class AdminController extends Controller
     public function edit($id)
     {
         //
+        $ = Post::find($post);
+        return view('posts.edit', [
+            'post' => $post
+        ]);
     }
 
     /**
@@ -92,9 +96,10 @@ class AdminController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, User $user)
     {
         //
+
     }
 
     /**
