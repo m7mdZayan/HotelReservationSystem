@@ -20,5 +20,6 @@ class Reservation extends Model
         'accompany_number',
         'room_id',
         'paid_price',
+        'client_id'
     ];
 }

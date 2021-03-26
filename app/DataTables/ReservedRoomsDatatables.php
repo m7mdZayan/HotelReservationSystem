@@ -2,17 +2,16 @@
 
 namespace App\DataTables;
 
-use App\Models\Reservation;
-use Illuminate\Support\Facades\Auth;
+use App\Models\Room;
 use Yajra\DataTables\Html\Button;
 use Yajra\DataTables\Html\Column;
 use Yajra\DataTables\Html\Editor\Editor;
 use Yajra\DataTables\Html\Editor\Fields;
 use Yajra\DataTables\Services\DataTable;
-use Carbon\Carbon;
+use Illuminate\Support\Facades\Auth;
 
 
-class ReservationsDatatable extends DataTable
+class ReservedRoomsDatatables extends DataTable
 {
     /**
      * Build DataTable class.
@@ -24,31 +23,28 @@ class ReservationsDatatable extends DataTable
     {
         return datatables()
             ->eloquent($query)
-            ->addColumn('actions', 'actions')
-            ->editColumn('created_at', function ($reservation) {
-                return $reservation->created_at ? with(new Carbon($reservation->created_at))->diffForHumans() : '';
+            ->addColumn('actions', function($room){
+                return '<a class="btn btn-primary" href="' . route('client.reservation_form',['client' => Auth::id(), 'room' => $room['id']]) .'">Reserve</a>';
             })
-            ->rawColumns(['actions']);
+            ->editColumn('status', function ($room) {
+                return $room->status ? '<span class="badge badge-primary">Available</span>'
+                    : '<span class="badge badge-warning">Reserved</span>';
+            })
+            ->rawColumns(['actions'])
+            ->escapeColumns('status');
     }
 
     /**
      * Get query source of dataTable.
      *
-     * @param \App\Models\ReservationsDatatable $model
+     * @param \App\Models\ReservedRoomsDatatable $model
      * @return \Illuminate\Database\Eloquent\Builder
      */
-    public function query(Reservation $model)
+    public function query(Room $model): \Illuminate\Database\Eloquent\Builder
     {
-        if (Auth::user()->hasRole('user')) {
-            return $model->newQuery()
-            ->with('client')
-            ->select('reservations.*')->where('client_id', Auth::id());
-        }
-        else if(Auth::user()->hasRole('receptionist')){
-            return $model->newQuery()
-            ->with('client')
-            ->select('reservations.*');
-        }
+        return $model->newQuery()
+            ->with('manager')
+            ->select('rooms.*')->where('status','1');
     }
 
     /**
@@ -59,11 +55,12 @@ class ReservationsDatatable extends DataTable
     public function html()
     {
         return $this->builder()
-            ->setTableId('reservationsDatatable')
+            ->setTableId('reservedRoomsDatatable')
             ->columns($this->getColumns())
             ->minifiedAjax()
             ->orderBy(1)
             ->lengthMenu([[5, 10, 25, 50, -1], [5, 10, 25, 50, 'All']]);
+
     }
 
     /**
@@ -76,19 +73,24 @@ class ReservationsDatatable extends DataTable
         return [
 
             [
-                'name' => 'accompany_number',
-                'data' => 'accompany_number',
-                'title' => 'Accompany No.'
+                'name' => 'number',
+                'data' => 'number',
+                'title' => 'Room_number'
             ],
             [
-                'name' => 'room_id',
-                'data' => 'room_id',
-                'title' => 'Room Id'
+                'name' => 'capacity',
+                'data' => 'capacity',
+                'title' => 'Capacity'
             ],
             [
-                'name' => 'paid_price',
-                'data' => 'paid_price',
-                'title' => 'Paid price'
+                'name' => 'price',
+                'data' => 'price',
+                'title' => 'Price'
+            ],
+            [
+                'name' => 'floor_id',
+                'data' => 'floor_id',
+                'title' => 'Floor_id'
             ],
             [
                 'name' => 'actions',
@@ -109,6 +111,6 @@ class ReservationsDatatable extends DataTable
      */
     protected function filename()
     {
-        return 'Reservations_' . date('YmdHis');
+        return 'ReservedRooms_' . date('YmdHis');
     }
 }
