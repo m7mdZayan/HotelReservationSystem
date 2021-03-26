@@ -2,14 +2,13 @@
 
 namespace App\DataTables;
 
-use Illuminate\Support\Facades\Auth;
 use App\Models\Floor;
 use Carbon\Carbon;
 use Yajra\DataTables\DataTableAbstract;
 use Yajra\DataTables\Html\Builder;
 use Yajra\DataTables\Services\DataTable;
 
-class FloorsDatatable extends DataTable
+class FloorsDatatableCopy extends DataTable
 {
     /**
      * Build DataTable class.
@@ -21,23 +20,10 @@ class FloorsDatatable extends DataTable
     {
         return datatables()
             ->eloquent($query)
-            ->addColumn('actions', function($row){
-                $floorids=Floor::where('created_by',Auth::id())->pluck('id')->toArray();
-
-                
-                if (!Auth::user()->hasRole('admin') && !in_array($row->id,$floorids)){
-                
-                // if (!in_array($row->id,$floorids)){
-                    return;
-                }
-                   $btn = '<a href="javascript:void(0)" class="edit btn btn-info btn-sm ml-2">View</a>';
-                   $btn = $btn.'<a href="javascript:void(0)" class="edit btn btn-primary btn-sm ml-2">Edit</a>';
-                   $btn = $btn.'<a href="javascript:void(0)" class="edit btn btn-danger btn-sm ml-2">Delete</a>';
-
-                    return $btn;
-            })
+            ->addColumn('actions', 'floors.actions') //name , view file
+            ->addColumn('new', 'new')
             ->editColumn('created_at', function ($room) {
-                return $room->created_at ? Carbon::createFromFormat('Y-m-d H:i:s', $room->created_at)->format('Y-m-d'): '';
+                return $room->created_at ? with(new Carbon($room->created_at))->diffForHumans() : '';
             })
             ->rawColumns(['actions','new']);
     }
@@ -63,7 +49,7 @@ class FloorsDatatable extends DataTable
     public function html(): Builder
     {
         return $this->builder()
-            ->setTableId('floorsDatatable')
+            ->setTableId('FloorsDatatableCopy')
             ->columns($this->getColumns())
             ->minifiedAjax()
             ->orderBy(1)

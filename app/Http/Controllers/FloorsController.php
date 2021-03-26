@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\DataTables\FloorsDatatable;
+use App\DataTables\FloorsDatatableCopy;
 use App\Http\Requests\StoreFloorRequest;
 use App\Models\Floor;
 use Illuminate\Http\Request;
@@ -17,11 +18,23 @@ class FloorsController extends Controller
      * @param RoomsDatatable $room
      * @return Response
      */
-    public function index(FloorsDatatable $floor)
+    public function index(FloorsDatatableCopy $floor)
     {
-        //$floors = Floor::all();
-        return $floor->render('manager.floors');
+        // dd($floor);
+        // $floors = Floor::all();
+        // dd($floors[0]->name);
+
+        $floors= Floor::all();
+        // dd($floors);
+        // dd($floors[0]->name);
+        return $floor->render('floors.index');
+        // return view('posts.index', [
+        //     'posts' => $posts,
+        // ]);
         //return $room->render('manager.rooms', ['title' => 'Rooms', 'floors' => $floors]);
+        
+        
+        // <a class="btn btn-primary" href="{{ route('floors.index', ['']) }}" >Update</a>
     }
 
     /**
@@ -31,7 +44,7 @@ class FloorsController extends Controller
      */
     public function create()
     {
-        //
+        return view('floors.create');
     }
 
     /**
@@ -40,9 +53,14 @@ class FloorsController extends Controller
      * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\JsonResponse
      */
-    public function store(Request $request)
+    public function store(StoreFloorRequest $myRequestObject)
     {
-       
+        // dd(1);
+        // dd($myRequestObject);
+        $data = $myRequestObject->all();
+        // dd($data);
+        Floor::create($data);
+        return redirect()->route('floors.index');
     }
 
     /**
@@ -64,7 +82,17 @@ class FloorsController extends Controller
      */
     public function edit($id)
     {
-        //
+        // dd($id);
+        // $floor = ['id' => 1, 'title' => 'Laravel', 'description' => 'Show Post Description', 'posted_by' => 'Ahmed', 'created_at' => '2021-03-13'];
+        // dd($floor);
+
+        //new commented
+        $floor = Floor::find($id);
+        // dd($floor);
+        return view('floors.edit', [
+            'floor'=> $floor,
+            // 'users'=> User::all(),
+        ]);
     }
 
     /**
@@ -74,9 +102,13 @@ class FloorsController extends Controller
      * @param int $id
      * @return Response
      */
-    public function update(Request $request, $id)
+    public function update($id, StoreFloorRequest $myRequestObject)
     {
-        //
+        // dd($myRequestObject->all());
+        $data = $myRequestObject->all();
+        // dd($data);
+        Floor::find($id)->update($data);
+        return redirect()->route('floors.index');
     }
 
     /**
@@ -85,9 +117,9 @@ class FloorsController extends Controller
      * @param int $id
      * @return Response
      */
-    public function destroy(Floor $floor)
+    public function destroy($id)
     {
-        
-
+        Floor::destroy($id);
+        return redirect()->route('floors.index');
     }
 }
