@@ -83,9 +83,9 @@ class AdminController extends Controller
     public function edit($id)
     {
         //
-        $ = Post::find($post);
-        return view('posts.edit', [
-            'post' => $post
+        $user = User::find($id);
+        return view('admin.edit', [
+            'user' => $user
         ]);
     }
 
@@ -99,7 +99,8 @@ class AdminController extends Controller
     public function update(Request $request, User $user)
     {
         //
-
+        $user->update($request->all());
+        return redirect()->route('admin.managers');
     }
 
     /**
