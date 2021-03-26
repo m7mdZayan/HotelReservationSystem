@@ -55,6 +55,16 @@ Route::get('/admin/delete/{user}', [AdminController::class, 'destroy'])->name('a
 Route::get('/admin/edit/{user}', [AdminController::class, 'edit'])->name('admin.edit')->middleware('auth');
 Route::put('/admin/update/{user}', [AdminController::class, 'update'])->name('admin.update')->middleware('auth');
 
+Route::get('/admin/show-receptionist/{user}', [AdminController::class, 'show_receptionist'])->name('admin.show-receptionist')->middleware('auth');
+Route::get('/admin/edit-receptionist/{user}', [AdminController::class, 'edit_receptionist'])->name('admin.edit-receptionist')->middleware('auth');
+Route::put('/admin/update-receptionist/{user}', [AdminController::class, 'update_receptionist'])->name('admin.update-receptionist')->middleware('auth');
+Route::get('/admin/delete-receptionist/{user}', [AdminController::class, 'destroy_receptionist'])->name('admin.destroy-receptionist')->middleware('auth');
+
+
+Route::get('/admin/show-customer/{user}', [AdminController::class, 'show_customer'])->name('admin.show-customer')->middleware('auth');
+Route::get('/admin/edit-customer/{user}', [AdminController::class, 'edit_customer'])->name('admin.edit-customer')->middleware('auth');
+Route::put('/admin/update-customer/{user}', [AdminController::class, 'update_customer'])->name('admin.update-customer')->middleware('auth');
+Route::get('/admin/delete-customer/{user}', [AdminController::class, 'destroy_customer'])->name('admin.destroy-customer')->middleware('auth');
 
 
 //manager

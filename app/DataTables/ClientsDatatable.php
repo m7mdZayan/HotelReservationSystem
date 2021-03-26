@@ -30,9 +30,9 @@ class ClientsDatatable extends DataTable
                 if (!Auth::user()->hasRole('admin') && !in_array($row->id,$ids)){
                     return;
                 }
-                   $btn = '<a href="javascript:void(0)" class="edit btn btn-info btn-sm ml-2">View</a>';
-                   $btn = $btn.'<a href="javascript:void(0)" class="edit btn btn-primary btn-sm ml-2">Edit</a>';
-                   $btn = $btn.'<a href="javascript:void(0)" class="edit btn btn-danger btn-sm ml-2">Delete</a>';
+                   $btn = '<a href="'. route('admin.show-customer',[$row['id']]) .'" class="edit btn btn-info btn-sm ml-2">View</a>';
+                   $btn = $btn.'<a href="'. route('admin.edit-customer',[$row['id']]) .'" class="edit btn btn-primary btn-sm ml-2">Edit</a>';
+                   $btn = $btn.'<a href="'. route('admin.destroy-customer',[$row['id']]) .'" class="edit btn btn-danger btn-sm ml-2">Delete</a>';
 
                     return $btn;
             })

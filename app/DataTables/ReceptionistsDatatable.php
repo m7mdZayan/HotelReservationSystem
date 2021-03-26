@@ -31,9 +31,9 @@ class ReceptionistsDatatable extends DataTable
                 if (!Auth::user()->hasRole('admin') && !in_array($row->id,$ids)){
                     return;
                 }
-                   $btn = '<a href="javascript:void(0)" class="edit btn btn-info btn-sm ml-2">View</a>';
-                   $btn = $btn.'<a href="javascript:void(0)" class="edit btn btn-primary btn-sm ml-2">Edit</a>';
-                   $btn = $btn.'<a href="javascript:void(0)" class="edit btn btn-danger btn-sm ml-2">Delete</a>';
+                   $btn = '<a href="'. route('admin.show-receptionist',[$row['id']]) .'" class="edit btn btn-info btn-sm ml-2">View</a>';
+                   $btn = $btn.'<a href="'. route('admin.edit-receptionist',[$row['id']]) .'" class="edit btn btn-primary btn-sm ml-2">Edit</a>';
+                   $btn = $btn.'<a href="'. route('admin.destroy-receptionist',[$row['id']]) .'" class="edit btn btn-danger btn-sm ml-2">Delete</a>';
 
                     return $btn;
             })

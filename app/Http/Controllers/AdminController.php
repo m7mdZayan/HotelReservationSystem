@@ -24,7 +24,6 @@ class AdminController extends Controller
     public function manage_managers(ManagerDatatable $manager)
     {
         
-        //dd($manager);
         return $manager->render('manager.rooms');
 
     }
@@ -114,5 +113,68 @@ class AdminController extends Controller
         //
         User::where('id', $id)->delete();
         return redirect()->route('admin.managers');
+    }
+
+
+    public function show_receptionist($user)
+    {
+        $user = User::find($user);
+        return view('admin.receptionist.show', [
+            'user' => $user
+        ]);
+    }
+
+    public function edit_receptionist($id)
+    {
+        //
+        $user = User::find($id);
+        return view('admin.receptionist.edit', [
+            'user' => $user
+        ]);
+    }
+    
+    public function update_receptionist(Request $request, User $user)
+    {
+        //
+        $user->update($request->all());
+        return redirect()->route('admin.receptionists');
+    }
+
+    public function destroy_receptionist($id)
+    {
+        //
+        User::where('id', $id)->delete();
+        return redirect()->route('admin.receptionists');
+    }
+    
+    public function show_customer($user)
+    {
+        $user = User::find($user);
+        return view('admin.customer.show', [
+            'user' => $user
+        ]);
+    }
+
+    public function edit_customer($id)
+    {
+        //
+        $user = User::find($id);
+        return view('admin.customer.edit', [
+            'user' => $user
+        ]);
+    }
+    
+    public function update_customer(Request $request, User $user)
+    {
+        //
+        $user->update($request->all());
+        return redirect()->route('admin.client');
+    }
+
+    public function destroy_customer($id)
+    {
+        //
+        User::where('id', $id)->delete();
+        return redirect()->route('admin.client');
     }
 }
