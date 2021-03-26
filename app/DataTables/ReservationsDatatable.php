@@ -27,7 +27,7 @@ class ReservationsDatatable extends DataTable
             ->eloquent($query)
             ->addColumn('actions', 'actions')
             ->editColumn('created_at', function ($reservation) {
-                return $reservation->created_at ? with(new Carbon($reservation->created_at))->diffForHumans() : '';
+                return $reservation->created_at ? Carbon::createFromFormat('Y-m-d H:i:s', $reservation->created_at)->format('Y-m-d'): '';
             })
             ->rawColumns(['actions']);
     }

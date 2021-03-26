@@ -11,6 +11,7 @@ use App\Http\Controllers\ManagerController;
 use App\Http\Controllers\ReceptionistController;
 use App\Http\Controllers\RoomsController;
 use App\Http\Controllers\FloorsController;
+use App\Http\Middleware\UserMiddleware;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,16 +24,22 @@ use App\Http\Controllers\FloorsController;
 |
 */
 
-Route::get('/', function () {
-    //auth()->guard()->user()->assignRole('admin');
-    // auth()->user()->assignRole('user');
-    // auth()->user()->assignRole('manager');
-    // auth()->user()->assignRole('admin');
-    //  auth()->user()->assignRole('receptionist');
+// Route::get('/', function () {
+//     //auth()->guard()->user()->assignRole('admin');
+//     // auth()->user()->assignRole('user');
+//     // auth()->user()->assignRole('manager');
+//     // auth()->user()->assignRole('admin');
+//     //  auth()->user()->assignRole('receptionist');
 
-    //dd(auth()->guard()->user());
-    return view('admin.index');
-})->name('myProfile')->middleware('auth');
+//     //dd(auth()->guard()->user());
+//     return view('admin.index');
+// })->middleware('auth');
+
+Route::group(['middleware' => ['auth','isUser']], function(){
+    Route::get('/', function () {
+        return view('admin.index');
+    });
+});
 
 Route::get('profile',[App\Http\Controllers\UserController::class, 'profile'])->name('profile')->middleware('auth');
 Route::post('profile', [App\Http\Controllers\UserController::class, 'update_avatar']);

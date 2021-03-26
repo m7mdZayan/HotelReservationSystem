@@ -40,7 +40,7 @@ class RoomsDatatable extends DataTable
 
 
             ->editColumn('created_at', function ($room) {
-                return $room->created_at ? with(new Carbon($room->created_at))->diffForHumans() : '';
+                return $room->created_at ? Carbon::createFromFormat('Y-m-d H:i:s', $room->created_at)->format('Y-m-d'): '';
             })
             ->editColumn('status', function ($room) {
                 return $room->status ? '<span class="badge badge-primary">Available</span>'

@@ -24,7 +24,7 @@ class ManagerDatatable extends DataTable
             ->eloquent($query)
             ->addColumn('actions', 'actions')
             ->editColumn('created_at', function ($manager) {
-                return $manager->created_at ? with(new Carbon($manager->created_at))->diffForHumans() : '';
+                return $manager->created_at ? Carbon::createFromFormat('Y-m-d H:i:s', $manager->created_at)->format('Y-m-d'): '';
             })
             ->rawColumns(['actions']);
     }
