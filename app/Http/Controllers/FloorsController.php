@@ -24,6 +24,7 @@ class FloorsController extends Controller
         // dd($floors[0]->name);
 
         $floors= Floor::all();
+        // dd($floors);
         // dd($floors[0]->name);
         return $floor->render('floors.index');
         // return view('posts.index', [
@@ -110,12 +111,9 @@ class FloorsController extends Controller
      * @param int $id
      * @return Response
      */
-    public function destroy(Floor $floor)
+    public function destroy($id)
     {
-        
-
+        Floor::destroy($id);
+        return redirect()->route('floors.index');
     }
 }
-
-// <!-- <a href="{{ route('rooms.index') }}" class="nav-link"> -->
-// <!-- <a class="btn btn-primary" href="{{ route('floors.index', ['id'=>1]) }}" >Update</a> -->

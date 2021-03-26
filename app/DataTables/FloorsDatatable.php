@@ -20,25 +20,7 @@ class FloorsDatatable extends DataTable
     {
         return datatables()
             ->eloquent($query)
-            // ->addColumn('actions', 'floors.actions') //name , view file
-            ->addColumn('actions', function($row){
-                // $roomids=Room::where('created_by',Auth::id())->pluck('id')->toArray();
-
-                // if (!in_array($row->id,$roomids)){
-                //     return;
-                // }
-                
-                //    $btn = $btn.'<a href="" class="edit btn btn-primary btn-sm ml-2">Edit</a>';
-                
-                // ->addColumn('actions', function($room){
-                //     return '<a class="btn btn-primary" href="' . route('client.reservation_form',['client' => Auth::id(), 'room' => $room['id']]) .'">Reserve</a>';
-                // })
-                
-                $btn = "<a href=\"". route('floors.edit', ['id'=>$row->id]) ."\" class=\"edit btn btn-primary btn-sm ml-2\">Edit</a>";
-                $btn = $btn.'<a href="javascript:void(0)" class="edit btn btn-danger btn-sm ml-2">Delete</a>';
-
-                    return $btn;
-            })
+            ->addColumn('actions', 'floors.actions') //name , view file
             ->addColumn('new', 'new')
             ->editColumn('created_at', function ($room) {
                 return $room->created_at ? with(new Carbon($room->created_at))->diffForHumans() : '';
@@ -136,3 +118,6 @@ class FloorsDatatable extends DataTable
         return 'Floors_' . date('YmdHis');
     }
 }
+
+
+

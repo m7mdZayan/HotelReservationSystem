@@ -58,10 +58,6 @@ Route::get('/admin/client', [AdminController::class, 'manage_client'])->name('ad
 //Route::get('/manager', [ManagerController::class, 'index'])->name('manager.index')->middleware('auth');
 Route::get('/manager/receptionists',[ManagerController::class, 'manage_receptionists'])->name('manager.receptionists')->middleware('auth');
 // Route::get('/manager/floors',[floorsController::class, 'index'])->name('manager.floors')->middleware('auth');
-Route::get('/floors',[floorsController::class, 'index'])->name('floors.index')->middleware('auth');
-Route::get('/floors/{id}/edit',[floorsController::class, 'edit'])->name('floors.edit')->middleware('auth');
-Route::put('/floors/{id}',[floorsController::class, 'update'])->name('floors.update')->middleware('auth');
-
 Route::get('/manager/rooms',[RoomsController::class, 'index'])->name('manager.rooms')->middleware('auth');
 
 //receptionist
@@ -78,6 +74,7 @@ Route::get('checkout',[CheckoutController::class, 'checkout'])->name('client.che
 Route::post('checkout',[CheckoutController::class, 'after_payment'])->name('checkout.credit-card');
 
 //floors
-// Route::get('/floors',[FloorController::class, 'index'])->name('floors.index')->middleware('auth');
-// Route::get('/floors/{id}/edit',[FloorController::class, 'edit'])->name('floors.edit')->middleware('auth');
-// Route::put('/floors/{id}',[FloorController::class, 'update'])->name('floors.update')->middleware('auth');
+Route::get('/floors',[floorsController::class, 'index'])->name('floors.index')->middleware('auth');
+Route::get('/floors/{id}/edit',[floorsController::class, 'edit'])->name('floors.edit')->middleware('auth');
+Route::put('/floors/{id}',[floorsController::class, 'update'])->name('floors.update')->middleware('auth');
+Route::delete('/floors/{id}', [floorsController::class, 'destroy'])->name('floors.destroy')->middleware('auth');
