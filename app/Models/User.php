@@ -30,6 +30,8 @@ class User extends Authenticatable
         'gender',
         'phone',
         'country',
+        'status',
+        'national_id',
     ];
 
     /**

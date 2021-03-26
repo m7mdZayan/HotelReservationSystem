@@ -74,6 +74,19 @@
                                 @endif
                             </div>
                         </div>
+                        <div class="form-group row">
+                            <label for="phone" class="col-md-4 col-form-label text-md-right">{{ __('national_id') }}</label>
+
+                            <div class="col-md-6">
+                                <input id="national_id" type="text" name="national_id" class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}" name="name" value="{{ old('name') }}" required autofocus>
+
+                                @if ($errors->has('national_id'))
+                                    <span class="invalid-feedback">
+                                        <strong>{{ $errors->first('national_id') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
 
                         <div class="form-group row">
                             <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Gender') }}</label>
@@ -90,15 +103,18 @@
                                 </span>
                             @endif
                     </div>
-{{--
+
                     <div class="form-group row">
                         <label for="country" class="col-md-4 col-form-label text-md-right">{{ __('Country') }}</label>
                         <div class="form-group col-md-6">
                                 <select id="inputState" class="form-control" name="country">
-                                  <option value="" >Choose...</option>
+                                    <option value="" >Choose...</option>
+                                    @foreach( countries() as $country)
+                                        <option value="{{$country['name']}}" >{{$country['name']}}</option>
+                                     @endforeach
                                 </select>
                       </div>
-                </div> --}}
+                </div>
 
                         <div class="form-group row mb-0">
                             <div class="col-md-6 offset-md-4">
