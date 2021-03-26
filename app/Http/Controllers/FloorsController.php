@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\DataTables\FloorsDatatable;
+use App\DataTables\FloorsDatatableCopy;
 use App\Http\Requests\StoreFloorRequest;
 use App\Models\Floor;
 use Illuminate\Http\Request;
@@ -17,7 +18,7 @@ class FloorsController extends Controller
      * @param RoomsDatatable $room
      * @return Response
      */
-    public function index(FloorsDatatable $floor)
+    public function index(FloorsDatatableCopy $floor)
     {
         // dd($floor);
         // $floors = Floor::all();

@@ -8,7 +8,7 @@ use Yajra\DataTables\DataTableAbstract;
 use Yajra\DataTables\Html\Builder;
 use Yajra\DataTables\Services\DataTable;
 
-class FloorsDatatable extends DataTable
+class FloorsDatatableCopy extends DataTable
 {
     /**
      * Build DataTable class.
@@ -49,7 +49,7 @@ class FloorsDatatable extends DataTable
     public function html(): Builder
     {
         return $this->builder()
-            ->setTableId('floorsDatatable')
+            ->setTableId('FloorsDatatableCopy')
             ->columns($this->getColumns())
             ->minifiedAjax()
             ->orderBy(1)
