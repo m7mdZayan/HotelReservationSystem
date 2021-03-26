@@ -11,6 +11,8 @@ use App\Http\Controllers\ManagerController;
 use App\Http\Controllers\ReceptionistController;
 use App\Http\Controllers\RoomsController;
 use App\Http\Controllers\FloorsController;
+use App\Models\User;
+use App\Notifications\greeting;
 
 /*
 |--------------------------------------------------------------------------
@@ -31,6 +33,9 @@ Route::get('/', function () {
     //  auth()->user()->assignRole('receptionist');
 
     //dd(auth()->guard()->user());
+    // User::find(1)->notify(new greeting);
+    $users = User::find(1);
+    Notification::send($users, new greeting());
     return view('admin.index');
 })->middleware('auth');
 
