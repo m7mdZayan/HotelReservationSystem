@@ -14,9 +14,11 @@ class Reservation extends Model
         return $this->belongsTo(User::class,'client_id');
     }
 
+    
     protected $fillable = [
         'accompany_number',
         'room_id',
         'paid_price',
+        'client_id'
     ];
 }

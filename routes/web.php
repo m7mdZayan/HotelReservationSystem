@@ -32,7 +32,7 @@ Route::get('/', function () {
 
     //dd(auth()->guard()->user());
     return view('admin.index');
-})->middleware('auth');
+})->name('myProfile')->middleware('auth');
 
 Route::get('profile',[App\Http\Controllers\UserController::class, 'profile'])->name('profile')->middleware('auth');
 Route::post('profile', [App\Http\Controllers\UserController::class, 'update_avatar']);
@@ -67,9 +67,10 @@ Route::get('/receptionist/manage', [ReceptionistController::class, 'approve_clie
 Route::get('/receptionist/approved', [ReceptionistController::class, 'manage_client'])->name('receptionist.approved')->middleware('auth');
 Route::get('status/{id}', [ReceptionistController::class, 'status'] )->name('status');
 //client
-//Route::get('/client', [ClientController::class, 'index'])->name('client.index')->middleware('auth');
+Route::get('/client', [ClientController::class, 'index'])->name('client.index')->middleware('auth');
 Route::get('/client/create', [ClientController::class, 'make_reservation'])->name('client.make_reservation')->middleware('auth');
 Route::get('/client/show', [ClientController::class, 'my_reservation'])->name('client.my_reservation')->middleware('auth');
-Route::get('checkout',[CheckoutController::class, 'checkout'])->name('client.checkout');
-Route::post('checkout',[CheckoutController::class, 'after_payment'])->name('checkout.credit-card');
+Route::get('/client/reservation_form/{room}', [ClientController::class, 'reservation_form'])->name('client.reservation_form')->middleware('auth');
+Route::post('checkout/',[ClientController::class, 'store'])->name('client.checkout');
+// Route::get('payment/',[CheckoutController::class, 'payment'])->name('checkout.credit-card');
 

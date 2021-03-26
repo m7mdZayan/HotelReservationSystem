@@ -16,11 +16,11 @@
     <div class="container" style="margin-top:10%;margin-bottom:10%">
         <div class="row justify-content-center">
             <div class="col-md-12">
-                <div class="">
+                {{-- <div class="">
                     <p>You will be charged rs 100</p>
-                </div>
+                </div> --}}
                 <div class="card">
-                    <form action="{{route('checkout.credit-card')}}"  method="post" id="payment-form">
+                    <form action="{{route('myProfile')}}"  method="get" id="payment-form">
                         @csrf                    
                         <div class="form-group">
                             <div class="card-header">
@@ -42,7 +42,7 @@
                           id="card-button"
                           class="btn btn-dark"
                           type="submit"
-                          data-secret="{{ $intent }}"
+                          data-secret="{{ $intent }}" onclick="return alert('Payment Has been Received ^^')"
                         > Pay </button>
                         </div>
                     </form>
