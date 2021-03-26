@@ -22,7 +22,9 @@ class ReceptionistsDatatable extends DataTable
     //     $role = $user->getRoleNames()->first();  
         return datatables()
             ->eloquent($query)
-            ->addColumn('actions', 'actions')
+            ->addColumn('actions', function($receptionist){
+                return view('actions', compact('receptionist'));
+            })
                  ->addColumn('actions', function($row){
                 $ids=Receptionist::where('created_by',Auth::id())->pluck('id')->toArray();
 

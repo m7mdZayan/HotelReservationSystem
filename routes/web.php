@@ -32,7 +32,7 @@ Route::get('/', function () {
 
     //dd(auth()->guard()->user());
     return view('admin.index');
-})->middleware('auth');
+})->name('dashboard')->middleware('auth');
 
 Route::get('profile',[App\Http\Controllers\UserController::class, 'profile'])->name('profile')->middleware('auth');
 Route::post('profile', [App\Http\Controllers\UserController::class, 'update_avatar']);
@@ -50,7 +50,7 @@ Route::get('/admin', [AdminController::class, 'index'])->name('admin.index')->mi
 Route::get('/admin/managers', [AdminController::class, 'manage_managers'])->name('admin.managers')->middleware('auth');
 Route::get('/admin/receptionists', [AdminController::class, 'manage_receptionists'])->name('admin.receptionists')->middleware('auth');
 Route::get('/admin/client', [AdminController::class, 'manage_client'])->name('admin.client')->middleware('auth');
-Route::get('/admin/show', [AdminController::class, 'show'])->name('admin.show')->middleware('auth');
+Route::get('/admin/show/{user}', [AdminController::class, 'show'])->name('admin.show')->middleware('auth');
 
 
 

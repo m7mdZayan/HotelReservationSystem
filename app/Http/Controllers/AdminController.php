@@ -22,6 +22,7 @@ class AdminController extends Controller
 
     public function manage_managers(ManagerDatatable $manager)
     {
+        
         //dd($manager);
         return $manager->render('manager.rooms');
 
@@ -66,8 +67,8 @@ class AdminController extends Controller
      */
     public function show($user)
     {
-        //
         $user = User::find($user);
+        // dd($user);
         return view('admin.show', [
             'user' => $user
         ]);
