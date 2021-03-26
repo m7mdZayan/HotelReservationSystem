@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Auth;
 use Yajra\DataTables\DataTableAbstract;
 use Yajra\DataTables\Html\Builder;
 use Yajra\DataTables\Services\DataTable;
+use App\Models\User;
 
 class ManagerDatatable extends DataTable
 {
@@ -36,9 +37,10 @@ class ManagerDatatable extends DataTable
      */
     public function query(Manager $model): \Illuminate\Database\Eloquent\Builder
     {
-        return $model->newQuery()
+        // return $model->newQuery()
 
-            ->select('users.*');
+            // ->select('users.*');
+            return User::role('manager')->newQuery();
     }
 
     /**

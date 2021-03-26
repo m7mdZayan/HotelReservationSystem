@@ -25,8 +25,10 @@ class RoomsDatatable extends DataTable
             // ->addColumn('actions', 'actions')
                         ->addColumn('actions', function($row){
                             $roomids=Room::where('created_by',Auth::id())->pluck('id')->toArray();
-            
-                            if (!in_array($row->id,$roomids)){
+                            // $ids=Receptionist::where('created_by',Auth::id())->pluck('id')->toArray();
+
+                            if (!Auth::user()->hasRole('admin') && !in_array($row->id,$roomids)){
+                            // if (!in_array($row->id,$roomids)){
                                 return;
                             }
                                $btn = '<a href="javascript:void(0)" class="edit btn btn-info btn-sm ml-2">View</a>';

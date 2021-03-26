@@ -10,6 +10,7 @@ use Yajra\DataTables\Html\Editor\Fields;
 use Yajra\DataTables\Services\DataTable;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
+use App\Models\User;
 
 
 class ReservationsDatatable extends DataTable
@@ -39,6 +40,8 @@ class ReservationsDatatable extends DataTable
      */
     public function query(Reservation $model)
     {
+        // return User::role('user')->newQuery();
+
         return $model->newQuery()
              ->with('client')
              ->select('reservations.*');

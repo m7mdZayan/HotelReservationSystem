@@ -18,13 +18,15 @@ class ReceptionistsDatatable extends DataTable
      * @return DataTableAbstract
      */
     public function dataTable($query)
-    {
+    {// { $user= Auth::user();
+    //     $role = $user->getRoleNames()->first();  
         return datatables()
             ->eloquent($query)
-            ->addColumn('actions', function($row){
+            ->addColumn('actions', 'actions')
+                 ->addColumn('actions', function($row){
                 $ids=Receptionist::where('created_by',Auth::id())->pluck('id')->toArray();
 
-                if (!in_array($row->id,$ids)){
+                if (!Auth::user()->hasRole('admin') && !in_array($row->id,$ids)){
                     return;
                 }
                    $btn = '<a href="javascript:void(0)" class="edit btn btn-info btn-sm ml-2">View</a>';
@@ -33,11 +35,10 @@ class ReceptionistsDatatable extends DataTable
 
                     return $btn;
             })
-            //->addColumn('actions', 'actions')
             ->editColumn('created_at', function ($receptionist) {
                 return $receptionist->created_at ? with(new Carbon($receptionist->created_at))->diffForHumans() : '';
-            });
-           // ->rawColumns(['actions']);
+            })
+           ->rawColumns(['actions']);
     }
 
     /**
@@ -48,8 +49,7 @@ class ReceptionistsDatatable extends DataTable
      */
     public function query(Receptionist $model): \Illuminate\Database\Eloquent\Builder
     {
-        // $user= Auth::user();
-        // dd($user);
+        
         // $users = User::role('manager')->get();
         // $user->hasRole('manager')
         // if($users){
@@ -98,16 +98,16 @@ class ReceptionistsDatatable extends DataTable
                 'name' => 'created_at',
                 'data' => 'created_at',
                 'title' => 'Created at'
-            ]
-            // [
-            //     'name' => 'actions',
-            //     'data' => 'actions',
-            //     'title' => 'Actions',
-            //     'printable' => false,
-            //     'exportable' => false,
-            //     'searchable' => false,
-            //     'orderable' => false,
-            // ],
+            ],
+            [
+                'name' => 'actions',
+                'data' => 'actions',
+                'title' => 'Actions',
+                'printable' => false,
+                'exportable' => false,
+                'searchable' => false,
+                'orderable' => false,
+            ],
         ];
     }
 

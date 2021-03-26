@@ -7,6 +7,8 @@ use Carbon\Carbon;
 use Yajra\DataTables\DataTableAbstract;
 use Yajra\DataTables\Html\Builder;
 use Yajra\DataTables\Services\DataTable;
+use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 
 class ClientsDatatable extends DataTable
 {
@@ -20,7 +22,20 @@ class ClientsDatatable extends DataTable
     {
         return datatables()
             ->eloquent($query)
-            ->addColumn('actions', 'actions')
+            // ->addColumn('actions', 'actions')
+            // ->addColumn('actions', 'actions')
+                 ->addColumn('actions', function($row){
+                $ids=Client::where('created_by',Auth::id())->pluck('id')->toArray();
+
+                if (!Auth::user()->hasRole('admin') && !in_array($row->id,$ids)){
+                    return;
+                }
+                   $btn = '<a href="javascript:void(0)" class="edit btn btn-info btn-sm ml-2">View</a>';
+                   $btn = $btn.'<a href="javascript:void(0)" class="edit btn btn-primary btn-sm ml-2">Edit</a>';
+                   $btn = $btn.'<a href="javascript:void(0)" class="edit btn btn-danger btn-sm ml-2">Delete</a>';
+
+                    return $btn;
+            })
             ->editColumn('created_at', function ($client) {
                 return $client->created_at ? with(new Carbon($client->created_at))->diffForHumans() : '';
             })
@@ -35,9 +50,9 @@ class ClientsDatatable extends DataTable
      */
     public function query(Client $model): \Illuminate\Database\Eloquent\Builder
     {
-        return $model->newQuery()
-            ->with('manager')
-            ->select('users.*');
+        return User::role('user')->newQuery();
+            // ->with('manager')
+            // ->select('users.*');
     }
 
     /**
@@ -90,15 +105,15 @@ class ClientsDatatable extends DataTable
                 'data' => 'gender',
                 'title' => 'Gender'
             ],
-            // [
-            //     'name' => 'actions',
-            //     'data' => 'actions',
-            //     'title' => 'Actions',
-            //     'printable' => false,
-            //     'exportable' => false,
-            //     'searchable' => false,
-            //     'orderable' => false,
-            // ],
+            [
+                'name' => 'actions',
+                'data' => 'actions',
+                'title' => 'Actions',
+                'printable' => false,
+                'exportable' => false,
+                'searchable' => false,
+                'orderable' => false,
+            ],
         ];
     }
 
