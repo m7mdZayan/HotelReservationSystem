@@ -16,15 +16,23 @@ class Room extends Model
     //  */
     // protected $table = "rooms";
     
-    // protected $fillable = [
-    //     'id',
-    //     'number',
-    //     'capacity',
-    // ];
+    protected $fillable = [
+        'floor_id',
+        'number',
+        'capacity',
+        'price',
+        'created_by',
+        'status',
+    ];
 
     public function manager()
     {
         return $this->belongsTo(User::class,'created_by');
+    }
+
+    public function floor()
+    {
+        return $this->belongsTo(Floor::class,'floor_id');
     }
 
 }

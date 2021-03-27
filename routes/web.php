@@ -27,7 +27,7 @@ Route::get('/', function () {
     //auth()->guard()->user()->assignRole('admin');
     // auth()->user()->assignRole('user');
     // auth()->user()->assignRole('manager');
-    // auth()->user()->assignRole('admin');
+    auth()->user()->assignRole('manager');
     //  auth()->user()->assignRole('receptionist');
 
     //dd(auth()->guard()->user());
@@ -58,7 +58,7 @@ Route::get('/admin/show', [AdminController::class, 'show'])->name('admin.show')-
 //Route::get('/manager', [ManagerController::class, 'index'])->name('manager.index')->middleware('auth');
 Route::get('/manager/receptionists',[ManagerController::class, 'manage_receptionists'])->name('manager.receptionists')->middleware('auth');
 // Route::get('/manager/floors',[floorsController::class, 'index'])->name('manager.floors')->middleware('auth');
-Route::get('/manager/rooms',[RoomsController::class, 'index'])->name('manager.rooms')->middleware('auth');
+// Route::get('/manager/rooms',[RoomsController::class, 'index'])->name('manager.rooms')->middleware('auth');
 
 //receptionist
 //Route::get('/receptionist', [ReceptionistController::class, 'index'])->name('receptionist.index')->middleware('auth');
@@ -78,6 +78,13 @@ Route::get('/floors',[floorsController::class, 'index'])->name('floors.index')->
 Route::get('/floors/{id}/edit',[floorsController::class, 'edit'])->name('floors.edit')->middleware('auth');
 Route::put('/floors/{id}',[floorsController::class, 'update'])->name('floors.update')->middleware('auth');
 Route::delete('/floors/{id}', [floorsController::class, 'destroy'])->name('floors.destroy')->middleware('auth');
-
 Route::get('/floors/create',[floorsController::class,'create'])->name('floors.create')->middleware('auth');
 Route::post('/floors',[floorsController::class,'store'])->name('floors.store')->middleware('auth');
+
+//rooms
+Route::get('/rooms',[RoomsController::class, 'index'])->name('rooms.index')->middleware('auth');
+Route::get('/rooms/{id}/edit',[RoomsController::class, 'edit'])->name('rooms.edit')->middleware('auth');
+Route::put('/rooms/{id}',[RoomsController::class, 'update'])->name('rooms.update')->middleware('auth');
+Route::delete('/rooms/{id}', [RoomsController::class, 'destroy'])->name('rooms.destroy')->middleware('auth');
+Route::get('/rooms/create',[RoomsController::class,'create'])->name('rooms.create')->middleware('auth');
+Route::post('/rooms',[RoomsController::class,'store'])->name('rooms.store')->middleware('auth');
