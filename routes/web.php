@@ -112,4 +112,4 @@ Route::get('/rooms/{id}/edit',[RoomsController::class, 'edit'])->name('rooms.edi
 Route::put('/rooms/{id}',[RoomsController::class, 'update'])->name('rooms.update')->middleware('auth');
 Route::delete('/rooms/{id}', [RoomsController::class, 'destroy'])->name('rooms.destroy')->middleware('auth');
 Route::get('/rooms/create',[RoomsController::class,'create'])->name('rooms.create')->middleware('auth');
-Route::post('/rooms',[RoomsController::class,'store'])->name('rooms.store')->middleware('auth');
+Route::post('/rooms',[RoomsController::class,'store'])->name('rooms.store')->middleware('auth'); 
