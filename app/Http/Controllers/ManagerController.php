@@ -81,10 +81,9 @@ class ManagerController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
-    {
-        //
-    }
+    public function edit(User $user) {
+         return view('receptionist.edit',compact('user'));
+    } 
 
     /**
      * Update the specified resource in storage.
@@ -93,10 +92,18 @@ class ManagerController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
-    {
-        //
-    }
+    public function update(Request $request, $user){
+        $user=User::findOrFail($user);
+        //dd((int)$request['mobile']);
+        //$user->update($request->all());
+        $user->update([
+            'name' => $request['name'],
+            'email' => $request['email'],
+            'mobile' => $request['mobile'],
+            'country' => $request['country'],
+        ]);
+        return redirect()->route('manager.receptionists') ->with('success','Data updated successfully');
+    } 
 
     /**
      * Remove the specified resource from storage.
@@ -106,7 +113,8 @@ class ManagerController extends Controller
      */
     public function destroy($id)
     {
-        //
+        User::where('id', $id)->delete();
+        return redirect()->route('manager.receptionists'); 
     }
 
     public function ban($id)

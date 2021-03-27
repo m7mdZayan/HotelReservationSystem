@@ -24,19 +24,14 @@ use App\Http\Middleware\UserMiddleware;
 |
 */
 
-// Route::get('/', function () {
-//     //auth()->guard()->user()->assignRole('admin');
-//     // auth()->user()->assignRole('user');
-//     // auth()->user()->assignRole('manager');
-//     // auth()->user()->assignRole('admin');
-//     //  auth()->user()->assignRole('receptionist');
-
-//     //dd(auth()->guard()->user());
-//     return view('admin.index');
-// })->middleware('auth');
 
 Route::group(['middleware' => ['auth','isUser']], function(){
     Route::get('/', function () {
+       
+        if(Auth::user()->hasRole('user') || Auth::user()->hasRole('manager') || Auth::user()->hasRole('receptionist') || Auth::user()->hasRole('admin')){}
+        else{
+            auth()->user()->assignRole('user');
+        }
         return view('admin.index');
     })->name('myProfile');
 });
@@ -48,9 +43,7 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home')->middleware('auth');
 
-// Route::get('/user', [HomeController::class, 'index']);
 
-//Route::get('/users', [App\Http\Controllers\HomeController::class, 'index'])->name('users.index');
 //dashBoards Routes
 //admin
 Route::get('/admin', [AdminController::class, 'index'])->name('admin.index')->middleware('auth');
@@ -62,24 +55,27 @@ Route::get('/admin/show', [AdminController::class, 'show'])->name('admin.show')-
 
 
 //manager
-//Route::get('/manager', [ManagerController::class, 'index'])->name('manager.index')->middleware('auth');
 Route::get('/manager/receptionists',[ManagerController::class, 'manage_receptionists'])->name('manager.receptionists')->middleware('auth');
-// Route::get('/manager/floors',[floorsController::class, 'index'])->name('manager.floors')->middleware('auth');
 Route::get('/manager/rooms',[RoomsController::class, 'index'])->name('manager.rooms')->middleware('auth');
+Route::get('/manager/receptionists/{receptionist}/destroy',[ManagerController::class, 'destroy'])->name('managerReceptionist')->middleware('auth'); 
+Route::get('/manager/receptionists/{user}/edit',[ManagerController::class, 'edit'])->name('mangerEditReceptionist')->middleware('auth'); 
+Route::put('/manager/receptionists/{receptionist}/update',[ManagerController::class, 'update'])->name('mangerUpdateReceptionist')->middleware('auth'); 
+// ban and un ban
+Route::get('/manager/receptionists/{id}/ban',[ManagerController::class, 'ban'])->name('ban')->middleware('auth'); 
+
 
 //receptionist
-//Route::get('/receptionist', [ReceptionistController::class, 'index'])->name('receptionist.index')->middleware('auth');
 Route::get('/receptionist/show', [ReceptionistController::class, 'show'])->name('receptionist.show')->middleware('auth');
 Route::get('/receptionist/manage', [ReceptionistController::class, 'approve_clients'])->name('receptionist.client')->middleware('auth');
 Route::get('/receptionist/approved', [ReceptionistController::class, 'manage_client'])->name('receptionist.approved')->middleware('auth');
 Route::get('status/{id}', [ReceptionistController::class, 'status'] )->name('status');
+
 //client
 Route::get('/client', [ClientController::class, 'index'])->name('client.index')->middleware('auth');
 Route::get('/client/create', [ClientController::class, 'make_reservation'])->name('client.make_reservation')->middleware('auth');
 Route::get('/client/show', [ClientController::class, 'my_reservation'])->name('client.my_reservation')->middleware('auth');
 Route::get('/client/reservation_form/{room}', [ClientController::class, 'reservation_form'])->name('client.reservation_form')->middleware('auth');
 Route::post('checkout/',[ClientController::class, 'store'])->name('client.checkout');
-// Route::get('payment/',[CheckoutController::class, 'payment'])->name('checkout.credit-card');
 
 //floors
 Route::get('/floors',[floorsController::class, 'index'])->name('floors.index')->middleware('auth');
@@ -90,5 +86,3 @@ Route::delete('/floors/{id}', [floorsController::class, 'destroy'])->name('floor
 Route::get('/floors/create',[floorsController::class,'create'])->name('floors.create')->middleware('auth');
 Route::post('/floors',[floorsController::class,'store'])->name('floors.store')->middleware('auth');
 
-// ban and un ban
-Route::get('/manager/receptionists/{id}',[ManagerController::class, 'ban'])->name('ban')->middleware('auth'); 
