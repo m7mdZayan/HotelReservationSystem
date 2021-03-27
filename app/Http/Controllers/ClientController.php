@@ -37,7 +37,6 @@ class ClientController extends Controller
     public function my_reservation(ReservationsDatatable $client)
     {
          return $client->render('client.my_reservation');
-        //eturn view('client.my_reservation');
     }
 
     public function make_reservation(ReservedRoomsDatatables $client){

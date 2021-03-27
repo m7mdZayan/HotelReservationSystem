@@ -24,9 +24,7 @@ class RoomsController extends Controller
      */
     public function index(RoomsDatatable $room)
     {
-        //$floors = Floor::all();
         return $room->render('rooms.index');
-        //return $room->render('manager.rooms', ['title' => 'Rooms', 'floors' => $floors]);
     }
 
     /**
