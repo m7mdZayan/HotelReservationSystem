@@ -32,6 +32,7 @@ class User extends Authenticatable
         'country',
         'status',
         'national_id',
+        'created_by',
     ];
 
     /**

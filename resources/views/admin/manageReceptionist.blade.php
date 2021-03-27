@@ -26,10 +26,10 @@
     <section style="padding-top: 60px">
         <div class="container">
             <div class="row">
-                <a href="{{route('rooms.create')}}" class="btn btn-success">Create Room</a>
-                </div>
-                <br/>
-                <br/>
+                <a href="{{route('receptionists.create')}}" class="btn btn-success">Create Receptionist</a>
+            </div>
+            <br/>
+            <br/>
             <div class="row">
                 <div class="col-md-12">
                     {!! $dataTable->table() !!}
