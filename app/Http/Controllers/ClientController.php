@@ -91,7 +91,7 @@ class ClientController extends Controller
 		$intent = $payment_intent->client_secret;
 
         Reservation::create([
-            'client_id' => '1',
+            'client_id' => Auth::user()->id,
             'room_id' => $request->room_id,
             'accompany_number' => $request->accompany_number,
             'paid_price' => $room->price,

@@ -66,6 +66,13 @@ Route::get('/admin/edit-customer/{user}', [AdminController::class, 'edit_custome
 Route::put('/admin/update-customer/{user}', [AdminController::class, 'update_customer'])->name('admin.update-customer')->middleware('auth');
 Route::get('/admin/delete-customer/{user}', [AdminController::class, 'destroy_customer'])->name('admin.destroy-customer')->middleware('auth');
 
+//create manager
+Route::get('/admin/createManager',[AdminController::class,'createManager'])->name('managers.create')->middleware('auth'); 
+Route::post('/admin/managers',[AdminController::class,'storeManager'])->name('managers.store')->middleware('auth');
+//create receptionist
+Route::get('/admin/createReceptionist',[AdminController::class,'createReceptionists'])->name('receptionists.create')->middleware('auth'); 
+Route::post('/admin/receptionists',[AdminController::class,'storeReceptionists'])->name('receptionists.store')->middleware('auth');
+
 
 //manager
 Route::get('/manager/receptionists',[ManagerController::class, 'manage_receptionists'])->name('manager.receptionists')->middleware('auth');

@@ -6,6 +6,11 @@ use Illuminate\Http\Request;
 use App\DataTables\ManagerDatatable;
 use App\DataTables\ReceptionistsDatatable;
 use App\DataTables\ClientsDatatable;
+use App\Http\Requests\StoreManagerRequest;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Auth;
+
+
 use App\Models\Manager;
 use App\Models\User;
 
@@ -24,13 +29,13 @@ class AdminController extends Controller
     public function manage_managers(ManagerDatatable $manager)
     {
         
-        return $manager->render('manager.rooms');
+        return $manager->render('admin.manageManagers');
 
     }
 
     public function manage_receptionists(ReceptionistsDatatable $receptionist)
     {
-        return $receptionist->render('manager.rooms');
+        return $receptionist->render('admin.manageReceptionist');
     }
 
     public function manage_client(ClientsDatatable $clients)
@@ -38,6 +43,50 @@ class AdminController extends Controller
         return $clients->render('manager.rooms');
     }
 
+    public function createManager(){
+        return view('admin.createManager',[ 'users' => User::all() ]); 
+    }
+    public function storeManager(StoreManagerRequest $myRequestObject){
+        //$data = $myRequestObject->all();
+        $manager = User::create([
+            'name' => $myRequestObject->name,
+            'email' => $myRequestObject->email,
+            'password' => Hash::make($myRequestObject->password),
+            'national_id' => $myRequestObject->national_id,
+            'status' => 1,
+            'isban' => 0,
+            'avatar_image' => 'default.jpg',
+            'created_by' => Auth::id(),
+        ]);
+        $manager->assignRole('manager'); 
+        // User::create($data);
+        return redirect()->route('admin.managers');
+    }
+
+
+
+    public function createReceptionists(){
+        return view('admin.createReceptionist',[ 'users' => User::all() ]); 
+    }
+
+    public function storeReceptionists(StoreManagerRequest $myRequestObject){
+        //$data = $myRequestObject->all();
+        $receptionist = User::create([
+            'name' => $myRequestObject->name,
+            'email' => $myRequestObject->email,
+            'password' => Hash::make($myRequestObject->password),
+            'national_id' => $myRequestObject->national_id,
+            'status' => 1,
+            'isban' => 0,
+            'avatar_image' => 'default.jpg',
+            'created_by' => Auth::id(),
+        ]);
+        $receptionist->assignRole('receptionist'); 
+        // User::create($data);
+        return redirect()->route('admin.receptionists');
+    }
+
+     
     /**
      * Show the form for creating a new resource.
      *

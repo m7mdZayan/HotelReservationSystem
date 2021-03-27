@@ -23,6 +23,13 @@ class ReservationsDatatable extends DataTable
      */
     public function dataTable($query)
     {
+        if(Auth::user()->hasRole('receptionist')){
+            return datatables()
+            ->eloquent($query)
+            ->editColumn('created_at', function ($reservation) {
+                return $reservation->created_at ? Carbon::createFromFormat('Y-m-d H:i:s', $reservation->created_at)->format('Y-m-d'): '';
+            });
+        }
         return datatables()
             ->eloquent($query)
             ->addColumn('actions', 'actions')

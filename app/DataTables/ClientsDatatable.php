@@ -59,7 +59,7 @@ class ClientsDatatable extends DataTable
     public function query(Client $model): \Illuminate\Database\Eloquent\Builder
     {
         if (Auth::user()->hasRole('receptionist')) {
-            return $model->newQuery()
+            return User::role('user')->newQuery()
             //->with('manager')
             ->select('users.*');
         }
