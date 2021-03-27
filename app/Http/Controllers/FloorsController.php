@@ -6,8 +6,10 @@ use App\DataTables\FloorsDatatable;
 use App\DataTables\FloorsDatatableCopy;
 use App\Http\Requests\StoreFloorRequest;
 use App\Models\Floor;
+use App\Models\Room;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Validator;
 
 class FloorsController extends Controller
@@ -119,7 +121,15 @@ class FloorsController extends Controller
      */
     public function destroy($id)
     {
-        Floor::destroy($id);
-        return redirect()->route('floors.index');
+        
+        if(Room::where('floor_id', $id)->get()->isEmpty())
+        {
+            return Redirect::back()->withErrors("can not delete a floor which has rooms associated to it !");
+        }
+        else
+        {
+            Floor::destroy($id);
+            return redirect()->route('floors.index');
+        }
     }
 }

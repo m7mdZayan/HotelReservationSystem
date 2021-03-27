@@ -25,10 +25,9 @@
     @endif
     <section style="padding-top: 60px">
         <div class="container">
-            <div class="row">
-                <a href="{{route('floors.create')}}" class="btn btn-success">Create Floor</a>
+             <div class="row">
+                <a href="{{route('rooms.create')}}" class="btn btn-success">Create Room</a>
             </div>
-            <br/>
             <br/>
             <div class="row">
                 <div class="col-md-12">

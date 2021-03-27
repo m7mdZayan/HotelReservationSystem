@@ -36,17 +36,25 @@
       </div>
    @endif
    
-    <form method="POST" action="{{ route('floors.update', ['id' => $floor['id']] ) }}">
+    <form method="POST" action="{{ route('rooms.update', ['id' => $room['id']] ) }}">
       @method('PUT')
       @csrf
-      <!-- <div class="mb-3">
-        <label for="number" class="form-label">Number</label>
-        <input type="number" class="form-control" id="number" aria-describedby="emailHelp" name="number" value="{{$floor["number"]}}">
-      </div> -->
       <div class="mb-3">
-        <label for="name" class="form-label">Name</label>
-        <input type="text" class="form-control" id="name" aria-describedby="emailHelp" name="name" value="{{$floor["name"]}}">
+        <label for="number" class="form-label">Number</label>
+        <input type="number" class="form-control" id="number" aria-describedby="emailHelp" name="number" value="{{$room["number"]}}">
       </div>
+      <div class="mb-3">
+        <label for="name" class="form-label">Price</label>
+        <input type="number" class="form-control" id="Price" aria-describedby="emailHelp" name="price" value="{{$room["price"]}}">
+      </div>
+      <div class="mb-3">
+        <label for="name" class="form-label">Capacity</label>
+        <input type="number" class="form-control" id="capacity" aria-describedby="emailHelp" name="capacity" value="{{$room["capacity"]}}">
+      </div>
+      <!-- <div class="mb-3">
+        <label for="name" class="form-label">Floor Number</label>
+        <input type="number" class="form-control" id="floor_id" aria-describedby="emailHelp" name="floor_id" value="{{$room["floor_id"]}}">
+      </div> -->
 
       <button type="submit" class="btn btn-success">Update</button>
     </form>
