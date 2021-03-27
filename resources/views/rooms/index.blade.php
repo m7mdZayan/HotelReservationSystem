@@ -14,21 +14,8 @@
     <script src="https://cdn.datatables.net/1.10.24/js/dataTables.bootstrap4.min.js"></script>
 
 <body>
-    @if ($errors->any())
-      <div class="alert alert-danger">
-          <ul>
-              @foreach ($errors->all() as $error)
-                  <li>{{ $error }}</li>
-              @endforeach
-          </ul>
-      </div>
-    @endif
     <section style="padding-top: 60px">
         <div class="container">
-             <div class="row">
-                <a href="{{route('rooms.create')}}" class="btn btn-success">Create Room</a>
-            </div>
-            <br/>
             <div class="row">
                 <div class="col-md-12">
                     {!! $dataTable->table() !!}
