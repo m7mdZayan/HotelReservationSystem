@@ -100,16 +100,6 @@ class FloorsDatatable extends DataTable
                 'data' => 'manager.name',
                 'title' => 'Created by'
             ],
-            // [
-            //     'name' => 'created_at',
-            //     'data' => 'created_at',
-            //     'title' => 'Created at'
-            // ],
-            // [
-            //     'name' => 'new',
-            //     'data' => 'new',
-            //     'title' => 'new'
-            // ],
             [
                 'name' => 'actions',
                 'data' => 'actions',

@@ -23,7 +23,7 @@ class FloorsDatatableCopy extends DataTable
             ->addColumn('actions', 'floors.actions') //name , view file
             ->addColumn('new', 'new')
             ->editColumn('created_at', function ($room) {
-                return $room->created_at ? with(new Carbon($room->created_at))->diffForHumans() : '';
+                return $room->created_at ? Carbon::createFromFormat('Y-m-d H:i:s', $room->created_at)->format('Y-m-d'): '';
             })
             ->rawColumns(['actions','new']);
     }
@@ -66,11 +66,6 @@ class FloorsDatatableCopy extends DataTable
     {
         return [
 
-            // [
-            //     'name' => 'id',
-            //     'data' => 'id',
-            //     'title' => 'Floor_id'
-            // ],
             [
                 'name' => 'number',
                 'data' => 'number',
@@ -86,16 +81,6 @@ class FloorsDatatableCopy extends DataTable
                 'data' => 'manager.name',
                 'title' => 'Created by'
             ],
-            // [
-            //     'name' => 'created_at',
-            //     'data' => 'created_at',
-            //     'title' => 'Created at'
-            // ],
-            // [
-            //     'name' => 'new',
-            //     'data' => 'new',
-            //     'title' => 'new'
-            // ],
             [
                 'name' => 'actions',
                 'data' => 'actions',

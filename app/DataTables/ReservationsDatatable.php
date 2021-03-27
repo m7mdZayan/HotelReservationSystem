@@ -85,7 +85,7 @@ class ReservationsDatatable extends DataTable
                 [
                     'name' => 'room_id',
                     'data' => 'room_id',
-                    'title' => 'Room Id'
+                    'title' => 'Room No.'
                 ],
                 [
                     'name' => 'paid_price',
