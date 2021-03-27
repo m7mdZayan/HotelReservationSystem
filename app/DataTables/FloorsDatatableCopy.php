@@ -74,48 +74,59 @@ class FloorsDatatableCopy extends DataTable
      */
     protected function getColumns(): array
     {
-        return [
+        if (Auth::user()->hasRole('admin')) {
+            return [
 
-            // [
-            //     'name' => 'id',
-            //     'data' => 'id',
-            //     'title' => 'Floor_id'
-            // ],
-            [
-                'name' => 'number',
-                'data' => 'number',
-                'title' => 'Floor_number'
-            ],
-            [
-                'name' => 'name',
-                'data' => 'name',
-                'title' => 'Name'
-            ],
-            [
-                'name' => 'created_by',
-                'data' => 'manager.name',
-                'title' => 'Created by'
-            ],
-            // [
-            //     'name' => 'created_at',
-            //     'data' => 'created_at',
-            //     'title' => 'Created at'
-            // ],
-            // [
-            //     'name' => 'new',
-            //     'data' => 'new',
-            //     'title' => 'new'
-            // ],
-            [
-                'name' => 'actions',
-                'data' => 'actions',
-                'title' => 'Actions',
-                'printable' => false,
-                'exportable' => false,
-                'searchable' => false,
-                'orderable' => false,
-            ],
-        ];
+                [
+                    'name' => 'number',
+                    'data' => 'number',
+                    'title' => 'Floor_number'
+                ],
+                [
+                    'name' => 'name',
+                    'data' => 'name',
+                    'title' => 'Name'
+                ],
+                [
+                    'name' => 'created_by',
+                    'data' => 'manager.name',
+                    'title' => 'Created by'
+                ],
+                [
+                    'name' => 'actions',
+                    'data' => 'actions',
+                    'title' => 'Actions',
+                    'printable' => false,
+                    'exportable' => false,
+                    'searchable' => false,
+                    'orderable' => false,
+                ],
+            ];
+        }
+        else{
+            return [
+
+                [
+                    'name' => 'number',
+                    'data' => 'number',
+                    'title' => 'Floor_number'
+                ],
+                [
+                    'name' => 'name',
+                    'data' => 'name',
+                    'title' => 'Name'
+                ],
+                [
+                    'name' => 'actions',
+                    'data' => 'actions',
+                    'title' => 'Actions',
+                    'printable' => false,
+                    'exportable' => false,
+                    'searchable' => false,
+                    'orderable' => false,
+                ],
+            ];
+        }
     }
 
     /**

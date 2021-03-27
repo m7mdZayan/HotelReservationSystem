@@ -28,9 +28,7 @@ class ManagerController extends Controller
 
     public function manage_receptionists(ReceptionistsDatatable $receptionist)
     {
-        $user = 1;
-        $view = view('manger.rooms', compact('user'));
-        return $receptionist->render($view);
+        return $receptionist->render('manager.rooms');
 
     }
 

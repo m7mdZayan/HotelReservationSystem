@@ -83,58 +83,109 @@ class RoomsDatatable extends DataTable
      */
     protected function getColumns(): array
     {
-        return [
+        if (Auth::user()->hasRole('admin')) {
+            return [
 
-            // [
-            //     'name' => 'id',
-            //     'data' => 'id',
-            //     'title' => 'Room_id'
-            // ],
-            [
-                'name' => 'number',
-                'data' => 'number',
-                'title' => 'Room_number'
-            ],
-            [
-                'name' => 'capacity',
-                'data' => 'capacity',
-                'title' => 'Capacity'
-            ],
-            [
-                'name' => 'price',
-                'data' => 'price',
-                'title' => 'Price'
-            ],
-            [
-                'name' => 'status',
-                'data' => 'status',
-                'title' => 'Status'
-            ],
-            [
-                'name' => 'created_by',
-                'data' => 'manager.name',
-                'title' => 'Created by'
-            ],
-            [
-                'name' => 'floor_id',
-                'data' => 'floor.name',
-                'title' => 'Floor Name'
-            ],
-            // [
-            //     'name' => 'created_at',
-            //     'data' => 'created_at',
-            //     'title' => 'Created at'
-            // ],
-            [
-                'name' => 'actions',
-                'data' => 'actions',
-                'title' => 'Actions',
-                'printable' => false,
-                'exportable' => false,
-                'searchable' => false,
-                'orderable' => false,
-            ],
-        ];
+                // [
+                //     'name' => 'id',
+                //     'data' => 'id',
+                //     'title' => 'Room_id'
+                // ],
+                [
+                    'name' => 'number',
+                    'data' => 'number',
+                    'title' => 'Room_number'
+                ],
+                [
+                    'name' => 'capacity',
+                    'data' => 'capacity',
+                    'title' => 'Capacity'
+                ],
+                [
+                    'name' => 'price',
+                    'data' => 'price',
+                    'title' => 'Price'
+                ],
+                [
+                    'name' => 'status',
+                    'data' => 'status',
+                    'title' => 'Status'
+                ],
+                [
+                    'name' => 'created_by',
+                    'data' => 'manager.name',
+                    'title' => 'Created by'
+                ],
+                [
+                    'name' => 'floor_id',
+                    'data' => 'floor.name',
+                    'title' => 'Floor Name'
+                ],
+                // [
+                //     'name' => 'created_at',
+                //     'data' => 'created_at',
+                //     'title' => 'Created at'
+                // ],
+                [
+                    'name' => 'actions',
+                    'data' => 'actions',
+                    'title' => 'Actions',
+                    'printable' => false,
+                    'exportable' => false,
+                    'searchable' => false,
+                    'orderable' => false,
+                ],
+            ];
+        }
+        else {
+            return [
+
+                // [
+                //     'name' => 'id',
+                //     'data' => 'id',
+                //     'title' => 'Room_id'
+                // ],
+                [
+                    'name' => 'number',
+                    'data' => 'number',
+                    'title' => 'Room_number'
+                ],
+                [
+                    'name' => 'capacity',
+                    'data' => 'capacity',
+                    'title' => 'Capacity'
+                ],
+                [
+                    'name' => 'price',
+                    'data' => 'price',
+                    'title' => 'Price'
+                ],
+                [
+                    'name' => 'status',
+                    'data' => 'status',
+                    'title' => 'Status'
+                ],
+                [
+                    'name' => 'floor_id',
+                    'data' => 'floor.name',
+                    'title' => 'Floor Name'
+                ],
+                // [
+                //     'name' => 'created_at',
+                //     'data' => 'created_at',
+                //     'title' => 'Created at'
+                // ],
+                [
+                    'name' => 'actions',
+                    'data' => 'actions',
+                    'title' => 'Actions',
+                    'printable' => false,
+                    'exportable' => false,
+                    'searchable' => false,
+                    'orderable' => false,
+                ],
+            ];
+        }
     }
 
     /**

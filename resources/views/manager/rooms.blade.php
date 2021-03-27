@@ -14,7 +14,6 @@
     <script src="https://cdn.datatables.net/1.10.24/js/dataTables.bootstrap4.min.js"></script>
 
 <body>
-<p>in manager/rooms</p>
     <section style="padding-top: 60px">
         <div class="container">
             <div class="row">

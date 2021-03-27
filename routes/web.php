@@ -24,12 +24,15 @@ use App\Http\Middleware\UserMiddleware;
 |
 */
 
+<<<<<<< HEAD
 Route::get('/', function () {
     //auth()->guard()->user()->assignRole('admin');
     // auth()->user()->assignRole('user');
     // auth()->user()->assignRole('manager');
     // auth()->user()->assignRole('manager');
     //  auth()->user()->assignRole('receptionist');
+=======
+>>>>>>> 115f0e7985cf61aa3a269568585c9637014800f8
 
 Route::group(['middleware' => ['auth','isUser']], function(){
     Route::get('/', function () {
@@ -75,15 +78,21 @@ Route::get('/admin/delete-customer/{user}', [AdminController::class, 'destroy_cu
 
 //manager
 Route::get('/manager/receptionists',[ManagerController::class, 'manage_receptionists'])->name('manager.receptionists')->middleware('auth');
+<<<<<<< HEAD
 Route::get('/manager/rooms',[RoomsController::class, 'index'])->name('manager.rooms')->middleware('auth');
+=======
+>>>>>>> 115f0e7985cf61aa3a269568585c9637014800f8
 Route::get('/manager/receptionists/{receptionist}/destroy',[ManagerController::class, 'destroy'])->name('managerReceptionist')->middleware('auth'); 
 Route::get('/manager/receptionists/{user}/edit',[ManagerController::class, 'edit'])->name('mangerEditReceptionist')->middleware('auth'); 
 Route::put('/manager/receptionists/{receptionist}/update',[ManagerController::class, 'update'])->name('mangerUpdateReceptionist')->middleware('auth'); 
 // ban and un ban
 Route::get('/manager/receptionists/{id}/ban',[ManagerController::class, 'ban'])->name('ban')->middleware('auth'); 
 
+<<<<<<< HEAD
 // Route::get('/manager/floors',[floorsController::class, 'index'])->name('manager.floors')->middleware('auth');
 // Route::get('/manager/rooms',[RoomsController::class, 'index'])->name('manager.rooms')->middleware('auth');
+=======
+>>>>>>> 115f0e7985cf61aa3a269568585c9637014800f8
 
 //receptionist
 Route::get('/receptionist/show', [ReceptionistController::class, 'show'])->name('receptionist.show')->middleware('auth');
@@ -112,4 +121,8 @@ Route::get('/rooms/{id}/edit',[RoomsController::class, 'edit'])->name('rooms.edi
 Route::put('/rooms/{id}',[RoomsController::class, 'update'])->name('rooms.update')->middleware('auth');
 Route::delete('/rooms/{id}', [RoomsController::class, 'destroy'])->name('rooms.destroy')->middleware('auth');
 Route::get('/rooms/create',[RoomsController::class,'create'])->name('rooms.create')->middleware('auth');
+<<<<<<< HEAD
 Route::post('/rooms',[RoomsController::class,'store'])->name('rooms.store')->middleware('auth'); 
+=======
+Route::post('/rooms',[RoomsController::class,'store'])->name('rooms.store')->middleware('auth');
+>>>>>>> 115f0e7985cf61aa3a269568585c9637014800f8
