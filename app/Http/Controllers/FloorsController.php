@@ -22,21 +22,12 @@ class FloorsController extends Controller
      */
     public function index(FloorsDatatableCopy $floor)
     {
-        // dd($floor);
-        // $floors = Floor::all();
-        // dd($floors[0]->name);
+        
 
         $floors= Floor::all();
-        // dd($floors);
-        // dd($floors[0]->name);
+        
         return $floor->render('floors.index');
-        // return view('posts.index', [
-        //     'posts' => $posts,
-        // ]);
-        //return $room->render('manager.rooms', ['title' => 'Rooms', 'floors' => $floors]);
         
-        
-        // <a class="btn btn-primary" href="{{ route('floors.index', ['']) }}" >Update</a>
     }
 
     /**
