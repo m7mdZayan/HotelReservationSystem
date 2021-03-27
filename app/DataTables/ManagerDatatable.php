@@ -22,11 +22,14 @@ class ManagerDatatable extends DataTable
     {
         return datatables()
             ->eloquent($query)
-            ->addColumn('actions', 'actions')
+            ->addColumn('actions', function($manager){
+                return view('actions', compact('manager'));
+            })
             ->editColumn('created_at', function ($manager) {
                 return $manager->created_at ? Carbon::createFromFormat('Y-m-d H:i:s', $manager->created_at)->format('Y-m-d'): '';
             })
-            ->rawColumns(['actions']);
+            ->rawColumns(['actions'])
+            ;
     }
 
     /**

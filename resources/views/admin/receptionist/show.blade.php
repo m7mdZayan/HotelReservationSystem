@@ -25,7 +25,7 @@
     </div>
 
     <div class="container text-center">
-        <a href={{route('admin.managers')}} class="btn btn-primary">Back</a>
+        <a href={{route('admin.receptionists')}} class="btn btn-primary">Back</a>
     </div>
 
 

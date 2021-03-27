@@ -22,17 +22,20 @@ class ReceptionistsDatatable extends DataTable
     //     $role = $user->getRoleNames()->first();  
         return datatables()
             ->eloquent($query)
-            ->addColumn('actions', 'actions')
+            ->addColumn('actions', function($receptionist){
+                return view('actions', compact('receptionist'));
+            })
                  ->addColumn('actions', function($row){
                 $ids=Receptionist::where('created_by',Auth::id())->pluck('id')->toArray();
 
                 if (!Auth::user()->hasRole('admin') && !in_array($row->id,$ids)){
                     return;
                 }
-                   $btn = '<a href="'. route('mangerEditReceptionist',['user'=>$row['id']]) .'" class="edit btn btn-info btn-sm ml-2">Edit</a>';
-                   $btn = $btn.'<a href="'. route('managerReceptionist',['receptionist'=>$row['id']]) .'" class="edit btn btn-danger btn-sm ml-2">Delete</a>';
+                   $btn = '<a href="'. route('admin.show-receptionist',[$row['id']]) .'" class="edit btn btn-info btn-sm ml-2">View</a>';
+                   $btn = $btn.'<a href="'. route('admin.edit-receptionist',[$row['id']]) .'" class="edit btn btn-primary btn-sm ml-2">Edit</a>';
+                   $btn = $btn.'<a href="'. route('admin.destroy-receptionist',[$row['id']]) .'" class="edit btn btn-danger btn-sm ml-2">Delete</a>';
                    $btn = $btn.'<a href="'. route('ban',['id'=>$row['id']]) .'" class="edit btn btn-warning btn-sm ml-2">Ban|Unban</a>'; 
-                   return $btn;
+                    return $btn;
             })
             ->editColumn('created_at', function ($receptionist) {
                 return $receptionist->created_at ? Carbon::createFromFormat('Y-m-d H:i:s', $receptionist->created_at)->format('Y-m-d'): '';
