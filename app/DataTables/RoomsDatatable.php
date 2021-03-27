@@ -20,24 +20,20 @@ class RoomsDatatable extends DataTable
      */
     public function dataTable($query)
     {
+
         return datatables()
-            ->eloquent($query)
-            // ->addColumn('actions', 'actions')
-                        ->addColumn('actions', function($row){
-                            $roomids=Room::where('created_by',Auth::id())->pluck('id')->toArray();
-                            // $ids=Receptionist::where('created_by',Auth::id())->pluck('id')->toArray();
+        ->eloquent($query)
+        ->addColumn('actions', function ($row) {
+        $roomids = Room::where('created_by', Auth::id())->pluck('id')->toArray();
 
-                            if (!Auth::user()->hasRole('admin') && !in_array($row->id,$roomids)){
-                            // if (!in_array($row->id,$roomids)){
-                                return;
-                            }
-                               $btn = '<a href="javascript:void(0)" class="edit btn btn-info btn-sm ml-2">View</a>';
-                               $btn = $btn.'<a href="javascript:void(0)" class="edit btn btn-primary btn-sm ml-2">Edit</a>';
-                               $btn = $btn.'<a href="javascript:void(0)" class="edit btn btn-danger btn-sm ml-2">Delete</a>';
-            
-                                return $btn;
-                        })
 
+        if (!Auth::user()->hasRole('admin') && !in_array($row->id, $roomids)) {
+
+            // if (!in_array($row->id,$roomids)){
+            return;
+        }
+         return view('rooms.actions')->with('id',$row->id);
+        })
 
             ->editColumn('created_at', function ($room) {
                 return $room->created_at ? Carbon::createFromFormat('Y-m-d H:i:s', $room->created_at)->format('Y-m-d'): '';
@@ -60,6 +56,7 @@ class RoomsDatatable extends DataTable
     {
         return $model->newQuery()
             ->with('manager')
+            ->with('floor')
             ->select('rooms.*');
     }
 
@@ -86,58 +83,109 @@ class RoomsDatatable extends DataTable
      */
     protected function getColumns(): array
     {
-        return [
+        if (Auth::user()->hasRole('admin')) {
+            return [
 
-            [
-                'name' => 'id',
-                'data' => 'id',
-                'title' => 'Room_id'
-            ],
-            [
-                'name' => 'number',
-                'data' => 'number',
-                'title' => 'Room_number'
-            ],
-            [
-                'name' => 'capacity',
-                'data' => 'capacity',
-                'title' => 'Capacity'
-            ],
-            [
-                'name' => 'price',
-                'data' => 'price',
-                'title' => 'Price'
-            ],
-            [
-                'name' => 'status',
-                'data' => 'status',
-                'title' => 'Status'
-            ],
-            [
-                'name' => 'created_by',
-                'data' => 'manager.name',
-                'title' => 'Created by'
-            ],
-            [
-                'name' => 'floor_id',
-                'data' => 'floor_id',
-                'title' => 'Floor_id'
-            ],
-            [
-                'name' => 'created_at',
-                'data' => 'created_at',
-                'title' => 'Created at'
-            ],
-            [
-                'name' => 'actions',
-                'data' => 'actions',
-                'title' => 'Actions',
-                'printable' => false,
-                'exportable' => false,
-                'searchable' => false,
-                'orderable' => false,
-            ],
-        ];
+                // [
+                //     'name' => 'id',
+                //     'data' => 'id',
+                //     'title' => 'Room_id'
+                // ],
+                [
+                    'name' => 'number',
+                    'data' => 'number',
+                    'title' => 'Room_number'
+                ],
+                [
+                    'name' => 'capacity',
+                    'data' => 'capacity',
+                    'title' => 'Capacity'
+                ],
+                [
+                    'name' => 'price',
+                    'data' => 'price',
+                    'title' => 'Price'
+                ],
+                [
+                    'name' => 'status',
+                    'data' => 'status',
+                    'title' => 'Status'
+                ],
+                [
+                    'name' => 'created_by',
+                    'data' => 'manager.name',
+                    'title' => 'Created by'
+                ],
+                [
+                    'name' => 'floor_id',
+                    'data' => 'floor.name',
+                    'title' => 'Floor Name'
+                ],
+                // [
+                //     'name' => 'created_at',
+                //     'data' => 'created_at',
+                //     'title' => 'Created at'
+                // ],
+                [
+                    'name' => 'actions',
+                    'data' => 'actions',
+                    'title' => 'Actions',
+                    'printable' => false,
+                    'exportable' => false,
+                    'searchable' => false,
+                    'orderable' => false,
+                ],
+            ];
+        }
+        else {
+            return [
+
+                // [
+                //     'name' => 'id',
+                //     'data' => 'id',
+                //     'title' => 'Room_id'
+                // ],
+                [
+                    'name' => 'number',
+                    'data' => 'number',
+                    'title' => 'Room_number'
+                ],
+                [
+                    'name' => 'capacity',
+                    'data' => 'capacity',
+                    'title' => 'Capacity'
+                ],
+                [
+                    'name' => 'price',
+                    'data' => 'price',
+                    'title' => 'Price'
+                ],
+                [
+                    'name' => 'status',
+                    'data' => 'status',
+                    'title' => 'Status'
+                ],
+                [
+                    'name' => 'floor_id',
+                    'data' => 'floor.name',
+                    'title' => 'Floor Name'
+                ],
+                // [
+                //     'name' => 'created_at',
+                //     'data' => 'created_at',
+                //     'title' => 'Created at'
+                // ],
+                [
+                    'name' => 'actions',
+                    'data' => 'actions',
+                    'title' => 'Actions',
+                    'printable' => false,
+                    'exportable' => false,
+                    'searchable' => false,
+                    'orderable' => false,
+                ],
+            ];
+        }
     }
 
     /**

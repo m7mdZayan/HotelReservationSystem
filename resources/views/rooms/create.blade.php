@@ -24,9 +24,10 @@
 
 </head>
 <body>
+
   <div class="container">
 
-  @if ($errors->any())
+    @if ($errors->any())
       <div class="alert alert-danger">
           <ul>
               @foreach ($errors->all() as $error)
@@ -34,23 +35,30 @@
               @endforeach
           </ul>
       </div>
-   @endif
-   
-    <form method="POST" action="{{ route('floors.update', ['id' => $floor['id']] ) }}">
-      @method('PUT')
-      @csrf
-      <!-- <div class="mb-3">
-        <label for="number" class="form-label">Number</label>
-        <input type="number" class="form-control" id="number" aria-describedby="emailHelp" name="number" value="{{$floor["number"]}}">
-      </div> -->
-      <div class="mb-3">
-        <label for="name" class="form-label">Name</label>
-        <input type="text" class="form-control" id="name" aria-describedby="emailHelp" name="name" value="{{$floor["name"]}}">
-      </div>
+    @endif
 
-      <button type="submit" class="btn btn-success">Update</button>
+    <form method="POST" action="{{route('rooms.store')}}">
+      @csrf
+      <div class="mb-3">
+        <label for="name" class="form-label">Room Number</label>
+        <input type="number" class="form-control" id="name" name="number" aria-describedby="emailHelp">
+      </div>
+      <div class="mb-3">
+        <label for="number" class="form-label">Room Capacity</label>
+        <input type="number" class="form-control" id="capacity" name="capacity" aria-describedby="emailHelp">
+      </div>
+      <div class="mb-3">
+        <label for="number" class="form-label">Room Price</label>
+        <input type="number" class="form-control" id="price" name="price" aria-describedby="emailHelp">
+      </div>
+      <div class="mb-3">
+        <label for="name" class="form-label">Floor Number</label>
+        <input type="number" class="form-control" id="floor_id" name="floor_id" aria-describedby="emailHelp">
+      </div>
+      <button type="submit" class="btn btn-success">Create</button>
     </form>
   </div>
+
 </body>
 </html>
 

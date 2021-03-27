@@ -137,7 +137,7 @@
             </li>
 
             <li class="nav-item">
-                <a href="{{ route('manager.rooms') }}" class="nav-link">
+                <a href="{{ route('rooms.index') }}" class="nav-link">
                     <i class="fas fa-th mr-2"></i>
                     <p>Manage Rooms</p>
                 </a>
@@ -180,7 +180,7 @@
             </li>
 
             <li class="nav-item">
-                <a href="{{ route('manager.rooms') }}" class="nav-link">
+                <a href="{{ route('rooms.index') }}" class="nav-link">
                     <i class="fas fa-th mr-2"></i>
                     <p>Manage Rooms</p>
                 </a>
