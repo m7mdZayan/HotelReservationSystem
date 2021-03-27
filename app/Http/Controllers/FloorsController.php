@@ -124,7 +124,7 @@ class FloorsController extends Controller
         
         if(Room::where('floor_id', $id)->get()->isEmpty())
         {
-            return Redirect::back()->withErrors("can not delete a reserved room");
+            return Redirect::back()->withErrors("can not delete a floor which has rooms associated to it !");
         }
         else
         {
