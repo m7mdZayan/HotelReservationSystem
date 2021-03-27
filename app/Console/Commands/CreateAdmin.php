@@ -42,6 +42,7 @@ class CreateAdmin extends Command
         $user->assignRole('admin');
         $user->email = $this->argument('email');
         $user->password = $this->argument('password');
+        $user->status =1;
         $user->save();
         $this->info('Admin created successfully');
         // return 0;
